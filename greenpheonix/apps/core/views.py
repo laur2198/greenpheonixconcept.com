@@ -1,0 +1,46 @@
+from django.shortcuts import render
+from apps.studii_de_caz.models import StudiuDeCaz
+from apps.blog.models import Articol
+
+
+def home(request):
+    studii_featured = StudiuDeCaz.objects.filter(featured=True, activ=True)[:3]
+    articole_recente = Articol.objects.filter(status="publicat")[:3]
+    context = {
+        "studii_featured": studii_featured,
+        "articole_recente": articole_recente,
+        "page_title": "Agenție Marketing Digital Brașov | Green Pheonix Concept",
+        "meta_description": "Campanii Meta Ads, Google Ads și web development. Rezultate măsurabile, prețuri transparente.",
+    }
+    return render(request, "core/home.html", context)
+
+
+def despre(request):
+    return render(request, "core/despre.html", {
+        "page_title": "Despre Laurențiu Bogdan — Marketing Specialist Brașov",
+        "meta_description": "Specialist marketing digital și web developer din Brașov. Certificat Google & Meta Ads. Fondator Green Pheonix Concept SRL.",
+    })
+
+
+def termeni(request):
+    return render(request, "core/termeni.html", {
+        "page_title": "Termeni și Condiții | Green Pheonix Concept",
+    })
+
+
+def confidentialitate(request):
+    return render(request, "core/confidentialitate.html", {
+        "page_title": "Politica de Confidențialitate | Green Pheonix Concept",
+    })
+
+
+def anulare(request):
+    return render(request, "core/anulare.html", {
+        "page_title": "Politica de Anulare și Rambursare | Green Pheonix Concept",
+    })
+
+
+def custom_404(request, exception):
+    return render(request, "404.html", {
+        "page_title": "Pagina nu există | Green Pheonix Concept",
+    }, status=404)

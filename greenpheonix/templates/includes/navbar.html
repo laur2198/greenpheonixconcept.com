@@ -1,0 +1,30 @@
+{% load static %}
+<nav class="navbar">
+    <div class="container navbar__inner">
+        <a href="{% url 'core:home' %}" class="navbar__logo">
+            <img src="{% static 'img/logo_gpc.svg' %}" alt="Green Pheonix Concept" height="32">
+        </a>
+        <ul class="navbar__links">
+            <li><a href="{% url 'servicii:ads' %}">Servicii Ads</a></li>
+            <li><a href="{% url 'servicii:web' %}">Web</a></li>
+            <li><a href="{% url 'studii_de_caz:list' %}">Portofoliu</a></li>
+            <li><a href="{% url 'blog:list' %}">Blog</a></li>
+            <li><a href="{% url 'core:despre' %}">Despre</a></li>
+            <li><a href="{% url 'contact:contact' %}" class="btn btn-primary">Contact</a></li>
+        </ul>
+        <button class="navbar__burger" id="navBurger" aria-label="Meniu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="navbar__mobile" id="navMobile">
+        <ul>
+            <li><a href="{% url 'servicii:ads' %}">Servicii Ads</a></li>
+            <li><a href="{% url 'servicii:web' %}">Web</a></li>
+            <li><a href="{% url 'studii_de_caz:list' %}">Portofoliu</a></li>
+            <li><a href="{% url 'blog:list' %}">Blog</a></li>
+            <li><a href="{% url 'core:despre' %}">Despre</a></li>
+            <li><a href="{% url 'contact:contact' %}">Contact</a></li>
+        </ul>
+    </div>
+</nav>

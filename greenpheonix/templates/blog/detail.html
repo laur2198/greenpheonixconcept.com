@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block og_type %}article{% endblock %}
+
+{% block content %}
+<article>
+    <section class="section page-hero">
+        <div class="container">
+            {% if articol.categorie %}
+            <p class="section__eyebrow">// {{ articol.categorie.nume|upper }}</p>
+            {% endif %}
+            <h1 class="page-hero__title">{{ articol.titlu }}</h1>
+            <p class="page-hero__subtitle">{{ articol.rezumat }}</p>
+            <span class="article-date">Publicat: {{ articol.data_publicare|date:"d F Y" }}</span>
+        </div>
+    </section>
+
+    {% if articol.imagine_cover %}
+    <div class="article-cover container">
+        <img src="{{ articol.imagine_cover.url }}" alt="{{ articol.titlu }}" class="article-cover__img">
+    </div>
+    {% endif %}
+
+    <section class="section">
+        <div class="container container--narrow">
+            <div class="article-content">
+                {{ articol.continut|linebreaks }}
+            </div>
+            {% if articol.taguri.all %}
+            <div class="article-tags">
+                {% for tag in articol.taguri.all %}
+                <span class="tag">{{ tag.nume }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</article>
+
+<section class="section cta-section">
+    <div class="container" style="text-align:center;">
+        <h2>Vrei sa aplici ce-ai invatat?</h2>
+        <p style="color: var(--color-text-muted); margin: 1rem 0 2rem;">Contacteaza-ne pentru o consultatie gratuita.</p>
+        <a href="{% url 'contact:contact' %}" class="btn btn-primary">Cere oferta gratuita</a>
+    </div>
+</section>
+{% endblock %}

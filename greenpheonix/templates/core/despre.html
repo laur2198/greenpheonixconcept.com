@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Laurentiu Bogdan | Fondator Green Pheonix Concept{% endblock %}
+{% block meta_description %}Afla povestea Green Pheonix. Laurentiu Bogdan combina experienta de brand cu marketingul pragmatic pentru a livra rezultate reale.{% endblock %}
+{% block og_title %}Laurentiu Bogdan — Omul din spatele sistemelor de crestere.{% endblock %}
+{% block og_description %}Claritate, consecventa si strategii care construiesc branduri puternice online.{% endblock %}
+{% block og_image %}{% static 'img/founder-og.jpg' %}{% endblock %}
+
+{% block content %}
+
+<section class="about-split">
+    <div class="about-split__image">
+        <img src="{% static 'img/founder.png' %}" alt="Laurentiu Bogdan — Fondator Green Pheonix Concept">
+    </div>
+
+    <div class="about-split__content">
+        <div class="about-inner">
+            <p class="section__eyebrow">// DESPRE</p>
+            <h1 class="about-headline">DESPRE <br><span class="text-outline">MINE</span></h1>
+
+            <p class="about-lead">
+                Sunt Laurentiu Bogdan si lucrez in marketing cu o idee simpla in minte: daca mesajul e clar si brandul e consecvent, rezultatele vin.
+            </p>
+
+            <p class="about-body">
+                In proiectele pentru Reinert si Martinel am avut ocazia sa vad cum se construieste, zi de zi, increderea intr-un brand — prin detalii, prin ritm, prin comunicare atenta si prin decizii care nu sunt doar "creative", ci si asumate.
+            </p>
+
+            <p class="about-body">
+                Imi place sa transform informatia intr-o poveste usor de inteles si de simtit: sa iau un produs, o idee sau o campanie si sa o fac relevanta pentru oamenii potriviti. Sunt genul de om care urmareste imaginea de ansamblu, dar nu ignora detaliile — pentru ca acolo se vede diferenta dintre "inca o postare" si o comunicare care chiar construieste.
+            </p>
+
+            <p class="about-body">
+                Lucrez bine cu echipe, imi asum responsabilitatea livrabilelor si prefer un stil de lucru clar: obiective, pasi, feedback, imbunatatire. Daca ai nevoie de cineva care poate tine directia de brand, poate livra constant si poate gandi pragmatic, atunci cel mai probabil o sa lucram bine impreuna.
+            </p>
+
+            <a href="{% url 'contact:contact' %}" class="btn btn-primary" style="margin-top: 2rem;">HAI SA DISCUTAM -></a>
+        </div>
+    </div>
+</section>
+
+<!-- Cifre & credentiale -->
+<section class="section section--border">
+    <div class="container">
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <div class="metric-value">2022</div>
+                <div class="metric-label">An Infiintare</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">4+</div>
+                <div class="metric-label">Clienti Activi</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">455K+</div>
+                <div class="metric-label">Impresii Generate</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">2</div>
+                <div class="metric-label">Certificari Ads</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clienti & certificari -->
+<section class="section">
+    <div class="container">
+        <div class="about-creds-grid">
+            <div>
+                <h3 class="creds-title">// CLIENTI REALI</h3>
+                <ul class="creds-list">
+                    <li><span class="creds-accent">BPD Transport</span> — Transport persoane Romania-Italia</li>
+                    <li><span class="creds-accent">CBS Express</span> — Transport persoane Romania-Austria</li>
+                    <li><span class="creds-accent">Reinert</span> — Brand FMCG (The Family Butchers Romania SRL)</li>
+                    <li><span class="creds-accent">Martinel</span> — Brand FMCG (The Family Butchers Romania SRL)</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="creds-title">// CERTIFICARI</h3>
+                <ul class="creds-list">
+                    <li><span class="creds-accent">Google Ads</span> — Search, Display, Shopping</li>
+                    <li><span class="creds-accent">Meta Ads</span> — Facebook & Instagram</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="creds-title">// STACK</h3>
+                <ul class="creds-list">
+                    <li>Meta Ads Manager</li>
+                    <li>Google Ads & Google Analytics 4</li>
+                    <li>Google Tag Manager</li>
+                    <li>Looker Studio</li>
+                    <li>Figma / HTML / CSS / Django</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section cta-section">
+    <div class="container">
+        <div class="cta-block">
+            <p class="cta-block__eyebrow">// COLABORAM?</p>
+            <h2 class="cta-block__title">Sa construim impreuna.</h2>
+            <p class="cta-block__text">Spune-mi despre proiectul tau. Fara obligatii, fara template-uri generice.</p>
+            <div class="cta-block__actions">
+                <a href="{% url 'contact:contact' %}" class="btn btn-primary">TRIMITE UN MESAJ</a>
+                <a href="https://wa.me/40793650902" target="_blank" class="btn btn-outline">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

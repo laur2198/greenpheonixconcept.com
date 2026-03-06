@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Performance Ads (Meta & Google) | Green Pheonix Concept{% endblock %}
+{% block meta_description %}Nu aducem doar click-uri, aducem clienti platitori. Strategii avansate de Meta Ads si Google Ads cu tracking server-side pentru profit maxim.{% endblock %}
+{% block og_title %}Vrei un ROAS mai mare? Vezi strategia noastra de Ads.{% endblock %}
+{% block og_description %}Audit conturi, Setup Tracking si Optimizare zilnica pentru campanii de scalare.{% endblock %}
+
+{% block content %}
+<section class="section page-hero">
+    <div class="container">
+        <p class="section__eyebrow">// PERFORMANCE MARKETING</p>
+        <h1 class="page-hero__title">Nu aducem click-uri.<br>Aducem <span class="accent">clienti platitori.</span></h1>
+        <p class="page-hero__subtitle">Campanii setate pe obiective de conversie (Lead, Sale), urmarite prin tracking server-side. Fara date, nu facem marketing.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="serviciu-grid">
+            <div class="serviciu-sidebar">
+                <div class="sidebar-block">
+                    <h3>LIVRABILE:</h3>
+                    <ul class="check-list">
+                        <li>Audit Conturi Ads</li>
+                        <li>Setup Tracking (GA4 + GTM)</li>
+                        <li>Design Creatives & Copy</li>
+                        <li>Raportare Lunara (Looker)</li>
+                    </ul>
+                </div>
+                <div class="sidebar-block">
+                    <p class="sidebar-label">STACK TEHNOLOGIC:</p>
+                    <div class="stack-pills">
+                        <span class="stack-pill">META ADS</span>
+                        <span class="stack-pill">GOOGLE ADS</span>
+                        <span class="stack-pill">TIKTOK</span>
+                        <span class="stack-pill">GA4 + GTM</span>
+                    </div>
+                </div>
+                <div class="sidebar-block">
+                    <a href="{% url 'contact:contact' %}" class="btn btn-primary btn--full">Solicita o strategie</a>
+                </div>
+            </div>
+
+            <div class="serviciu-content">
+                <div class="detail-block">
+                    <h3>01. META ADS (FB &amp; INSTAGRAM)</h3>
+                    <p>Ideal pentru a genera cerere (Demand Generation). Nu asteptam clientii sa caute — mergem noi peste ei cu oferta ta. Segmentare avansata pe audiențe Lookalike si Retargeting.</p>
+                    <ul class="check-list" style="margin-top: 1.5rem;">
+                        <li>Segmentare audiente (Lookalike, Retargeting)</li>
+                        <li>Testare A/B constanta pe Creative-uri</li>
+                        <li>Copywriting persuasiv (unghiuri de marketing testate)</li>
+                        <li>CAPI (Conversion API) pentru tracking precis post-iOS14</li>
+                    </ul>
+                </div>
+
+                <div class="detail-block">
+                    <h3>02. GOOGLE ADS (INTENT)</h3>
+                    <p>Captam clientii care cauta deja activ serviciile tale. Cea mai mare rata de conversie, dar necesita o structura impecabila a cuvintelor cheie negative pentru a nu risipi bugetul. Search, Display, Shopping — in functie de obiectiv.</p>
+                </div>
+
+                <div class="detail-block">
+                    <h3>03. TRACKING &amp; RAPORTARE</h3>
+                    <p>Fara date, doar ghicim. Implementam Google Tag Manager si CAPI (Conversion API) pentru a sti exact cat te costa un client, nu doar un click. Raportare lunara clara in Looker Studio.</p>
+                </div>
+
+                <div class="detail-block" style="border-top: 1px solid var(--color-border); padding-top: 2.5rem;">
+                    <h4 style="color: var(--color-accent); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.15em; margin-bottom: 1rem;">BUGET RECOMANDAT</h4>
+                    <p style="color: var(--color-text-muted);">Pentru rezultate optime si date statistice relevante, recomandam un buget media de minim <strong style="color: var(--color-text);">1.000 EUR / luna</strong> platit direct catre Facebook/Google. Fee-ul de management este separat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cum lucram -->
+<section class="section section--dark">
+    <div class="container">
+        <div class="section__header">
+            <p class="section__eyebrow">// PROCES</p>
+            <h2 class="section__title">Cum lucram impreuna</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <span class="process-step__num">01</span>
+                <h4>AUDIT &amp; ONBOARDING</h4>
+                <p>Saptamana 1. Primim acces la conturi, analizam istoricul si setam obiectivele KPI.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-step__num">02</span>
+                <h4>STRATEGIE &amp; SETUP</h4>
+                <p>Saptamana 2. Cream structura campaniilor, scriem textele si pregatim tracking-ul.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-step__num">03</span>
+                <h4>LANSARE (GO LIVE)</h4>
+                <p>Momentul adevarului. Campaniile sunt active si incepem sa colectam date reale.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-step__num">04</span>
+                <h4>OPTIMIZARE &amp; SCALE</h4>
+                <p>Lunar. Oprim ce pierde bani, scalam ce aduce profit. Raportare la fiecare 30 de zile.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+    <div class="container container--narrow">
+        <h2 style="margin-bottom: 2.5rem;">Intrebari frecvente</h2>
+        <details class="faq-item">
+            <summary>Cine detine contul de reclame? <span class="faq-icon">+</span></summary>
+            <div class="faq-answer"><p>Tu. Intotdeauna lucram pe contul clientului. Ai proprietate 100% asupra datelor si contului — nu esti captiv la noi.</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>Includeti si bugetul de media in pret? <span class="faq-icon">+</span></summary>
+            <div class="faq-answer"><p>Nu. Bugetul de reclame se plateste direct catre Facebook/Google. Fee-ul nostru este separat pentru management, strategie si optimizare.</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>Cat dureaza pana vad rezultate? <span class="faq-icon">+</span></summary>
+            <div class="faq-answer"><p>Primele 2-4 saptamani sunt de invatare pentru algoritmii platformei. Rezultatele incep sa se stabilizeze dupa 45-60 de zile. Nu promitem "rezultate garantate" in prima saptamana — aceasta este o practica lipsita de etica.</p></div>
+        </details>
+    </div>
+</section>
+
+<section class="section cta-section">
+    <div class="container">
+        <div class="cta-block">
+            <p class="cta-block__eyebrow">// INCEPE ACUM</p>
+            <h2 class="cta-block__title">Vrei sa scalam impreuna?</h2>
+            <p class="cta-block__text">Trimite-ne detalii despre afacerea ta si primesti o strategie personalizata in 24h.</p>
+            <div class="cta-block__actions">
+                <a href="{% url 'contact:contact' %}" class="btn btn-primary">Solicita strategia gratuita</a>
+                <a href="{% url 'studii_de_caz:list' %}" class="btn btn-outline">Vezi rezultatele noastre</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section page-hero" style="text-align:center; min-height: 70vh; display:flex; align-items:center;">
+    <div class="container">
+        <p class="section__eyebrow" style="color: var(--color-accent);">// MULTUMIM!</p>
+        <h1 class="page-hero__title">Mesajul tau a fost trimis</h1>
+        <p class="page-hero__subtitle">Iti vom raspunde in maximum 24 de ore cu o oferta personalizata.<br>
+        Ai urgente? Scrie-ne pe <a href="https://wa.me/40793650902" style="color:var(--color-accent)">WhatsApp</a>.</p>
+        <a href="{% url 'core:home' %}" class="btn btn-primary" style="margin-top: 2rem;">Inapoi acasa</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Web Engineering & Landing Pages de Conversie | Green Pheonix Concept{% endblock %}
+{% block meta_description %}Construim site-uri si landing pages care vand. Optimizare pentru mobil, viteza extrema si UX gandit sa transforme vizitatorii in lead-uri.{% endblock %}
+{% block og_title %}Un site nu e un tablou, e un instrument de vanzare.{% endblock %}
+{% block og_description %}Vezi cum construim pagini web care genereaza rezultate masurabile.{% endblock %}
+
+{% block content %}
+<section class="section page-hero">
+    <div class="container">
+        <p class="section__eyebrow">// WEB ENGINEERING</p>
+        <h1 class="page-hero__title">Un site nu e un tablou.<br>E un <span class="accent">instrument de vanzare.</span></h1>
+        <p class="page-hero__subtitle">Construim pagini rapide, optimizate pentru mobil si gandite sa converteasca vizitatorii in lead-uri. SEO on-page inclus.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="serviciu-grid">
+            <div class="serviciu-sidebar">
+                <div class="sidebar-block">
+                    <h3>TIPURI DE PROIECTE:</h3>
+                    <ul class="check-list">
+                        <li>Landing Page (Conversie)</li>
+                        <li>Site de prezentare (5-8 pagini)</li>
+                        <li>E-commerce (Shopify / WooCommerce)</li>
+                    </ul>
+                </div>
+                <div class="sidebar-block">
+                    <p class="sidebar-label">STACK:</p>
+                    <div class="stack-pills">
+                        <span class="stack-pill">FIGMA</span>
+                        <span class="stack-pill">HTML/CSS</span>
+                        <span class="stack-pill">DJANGO</span>
+                        <span class="stack-pill">WORDPRESS</span>
+                    </div>
+                </div>
+                <div class="sidebar-block">
+                    <a href="{% url 'contact:contact' %}" class="btn btn-primary btn--full">Discuta despre site-ul tau</a>
+                </div>
+            </div>
+
+            <div class="serviciu-content">
+                <div class="detail-block">
+                    <h3>01. LANDING PAGE</h3>
+                    <p>O singura pagina, un singur obiectiv: sa transforme vizitatorul in lead. Eliminam meniurile complexe si distragerile. Structura psihologica dovedita: Hero → Problema → Solutie → Dovada → CTA.</p>
+                    <ul class="check-list" style="margin-top: 1.5rem;">
+                        <li>Copywriting persuasiv inclus</li>
+                        <li>Viteza de incarcare sub 2 secunde</li>
+                        <li>Formular conectat la CRM sau email</li>
+                        <li>Optimizat pentru mobile-first</li>
+                    </ul>
+                    <div class="price-tag">500 — 900 RON</div>
+                </div>
+
+                <div class="detail-block">
+                    <h3>02. SITE DE PREZENTARE</h3>
+                    <p>Pentru afaceri care au nevoie de validare si autoritate in piata. Include paginile esentiale (Acasa, Despre, Servicii, Portofoliu, Contact) si optimizare SEO On-Page de baza.</p>
+                    <ul class="check-list" style="margin-top: 1.5rem;">
+                        <li>Design personalizat (nu template generic)</li>
+                        <li>SEO on-page (meta tags, schema markup)</li>
+                        <li>Integrare Google Analytics 4</li>
+                        <li>Hosting si domeniu — la alegerea ta</li>
+                    </ul>
+                    <div class="price-tag">1.500 — 4.000 RON</div>
+                </div>
+
+                <div class="detail-block">
+                    <h3>PROCESUL DE DEZVOLTARE</h3>
+                    <ol class="process-list">
+                        <li><strong>Wireframe &amp; Copy:</strong> Scriem textele inainte de design. Copy-ul vinde, nu designul.</li>
+                        <li><strong>Design Figma:</strong> Aprobam vizualul pixel-perfect inainte de a scrie o linie de cod.</li>
+                        <li><strong>Development:</strong> Cod curat, rapid si usor de intretinut.</li>
+                        <li><strong>Lansare &amp; QA:</strong> Testam formularele, viteza si aratam corect pe toate dispozitivele.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cum lucram -->
+<section class="section section--dark">
+    <div class="container">
+        <div class="section__header">
+            <p class="section__eyebrow">// PROCES</p>
+            <h2 class="section__title">Cum lucram impreuna</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <span class="process-step__num">01</span>
+                <h4>BRIEF &amp; STRATEGIE</h4>
+                <p>Saptamana 1. Definim arhitectura site-ului, publicul tinta si obiectivul principal de conversie.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-step__num">02</span>
+                <h4>DESIGN FIGMA</h4>
+                <p>Saptamana 2. Wireframe si design complet. Aprobam vizualul inainte de development.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-step__num">03</span>
+                <h4>BUILD &amp; QA</h4>
+                <p>Saptamanile 3-4. Dezvoltare, optimizare viteza, testare formulare si redirectionari.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-step__num">04</span>
+                <h4>GO LIVE &amp; ITERATIE</h4>
+                <p>Lansare controlata, monitorizare analytics si iteratii in primele 30 de zile.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+    <div class="container container--narrow">
+        <h2 style="margin-bottom: 2.5rem;">Intrebari frecvente</h2>
+        <details class="faq-item">
+            <summary>Cine detine hosting-ul si accesul la site? <span class="faq-icon">+</span></summary>
+            <div class="faq-answer"><p>Tu. Folosim conturile tale de hosting si CMS, iar accesul ramane la tine dupa livrare. Nu esti captiv.</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>Realizati si copywriting-ul? <span class="faq-icon">+</span></summary>
+            <div class="faq-answer"><p>Da. Scriem textele in functie de publicul tinta si obiectivele de conversie, apoi le validam cu tine inainte de design.</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>Oferiti mentenanta dupa lansare? <span class="faq-icon">+</span></summary>
+            <div class="faq-answer"><p>Oferim suport timp de 30 de zile dupa lansare inclus. Dupa aceea, putem discuta un pachet de mentenanta lunara in functie de nevoi.</p></div>
+        </details>
+    </div>
+</section>
+
+<section class="section cta-section">
+    <div class="container">
+        <div class="cta-block">
+            <p class="cta-block__eyebrow">// HAI SA CONSTRUIM</p>
+            <h2 class="cta-block__title">Ai un proiect in minte?</h2>
+            <p class="cta-block__text">Spune-ne despre afacerea ta si iti trimitem o estimare clara in 24h.</p>
+            <div class="cta-block__actions">
+                <a href="{% url 'contact:contact' %}" class="btn btn-primary">Cere o estimare gratuita</a>
+                <a href="{% url 'studii_de_caz:list' %}" class="btn btn-outline">Vezi site-urile realizate</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

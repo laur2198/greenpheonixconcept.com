@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Audit Campanii Publicitare | Green Pheonix Concept{% endblock %}
+{% block meta_description %}Audit profesional al campaniilor Meta Ads si Google Ads. Identificam ce nu functioneaza si cum imbunatati rezultatele. De la 300 RON.{% endblock %}
+
+{% block content %}
+<section class="section page-hero">
+    <div class="container">
+        <p class="section__eyebrow">// AUDIT</p>
+        <h1 class="page-hero__title">Campaniile tale<br>pierd <span class="accent">bani inutil?</span></h1>
+        <p class="page-hero__subtitle">Un audit profesional iti arata exact unde se duc banii, ce nu functioneaza si ce schimbari concrete poti face imediat pentru rezultate mai bune.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="grid-3">
+            <div class="card">
+                <div class="card__number">01</div>
+                <h3 class="card__title">Audit Meta Ads</h3>
+                <p class="card__text">Analizam structura campaniilor, audientele, creativeele, tracking-ul si costurile. Primesti un raport detaliat cu recomandari prioritizate.</p>
+                <div class="price-tag">300 — 500 RON</div>
+            </div>
+            <div class="card">
+                <div class="card__number">02</div>
+                <h3 class="card__title">Audit Google Ads</h3>
+                <p class="card__text">Cuvinte cheie negative, Quality Score, structura Ad Groups, tracking conversii — verificam totul si identificam unde pierzi bugetul inutil.</p>
+                <div class="price-tag">300 — 500 RON</div>
+            </div>
+            <div class="card">
+                <div class="card__number">03</div>
+                <h3 class="card__title">Audit Complet (Meta + Google)</h3>
+                <p class="card__text">Audit pentru ambele platforme + recomandari de strategie combinata. Ideal daca rulezi campanii pe ambele canale simultan.</p>
+                <div class="price-tag">500 — 800 RON</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem;">
+            <h2 style="margin-bottom: 1rem;">Ce primesti in urma auditului</h2>
+            <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto 3rem;">Un document structurat cu:</p>
+            <div class="grid-2" style="max-width: 800px; margin: 0 auto;">
+                <div class="card" style="text-align: left;">
+                    <ul class="check-list">
+                        <li>Analiza structurii campaniilor</li>
+                        <li>Erori de tracking identificate</li>
+                        <li>Audiențe sub-performante</li>
+                        <li>Cuvinte cheie care consuma buget inutil</li>
+                    </ul>
+                </div>
+                <div class="card" style="text-align: left;">
+                    <ul class="check-list">
+                        <li>Recomandari prioritizate (Quick Wins)</li>
+                        <li>Benchmark vs. industria ta</li>
+                        <li>Plan de actiune pe 30/60/90 zile</li>
+                        <li>Apel de 30 min pentru clarificari</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section cta-section">
+    <div class="container">
+        <div class="cta-block">
+            <p class="cta-block__eyebrow">// COMANDA AUDIT</p>
+            <h2 class="cta-block__title">Stii ca poti face mai bine.</h2>
+            <p class="cta-block__text">Completeaza formularul si te contactam pentru a discuta detaliile auditului. Livrare in 5-7 zile lucratoare.</p>
+            <div class="cta-block__actions">
+                <a href="{% url 'contact:contact' %}" class="btn btn-primary">Comanda un audit</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

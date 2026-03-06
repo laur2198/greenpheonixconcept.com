@@ -1,0 +1,6 @@
+﻿User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /calculator.html
+
+Sitemap: https://greenpheonixconcept.com/sitemap.xml

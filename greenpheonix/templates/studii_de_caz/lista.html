@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="section page-hero">
+    <div class="container">
+        <p class="section__eyebrow">// PORTOFOLIU</p>
+        <h1 class="page-hero__title">Studii de caz</h1>
+        <p class="page-hero__subtitle">Rezultate reale pentru clienti reali. Cifre, nu vorbe.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if studii %}
+        <div class="grid-2">
+            {% for studiu in studii %}
+            <div class="card card--case">
+                {% if studiu.imagine_cover %}
+                <img src="{{ studiu.imagine_cover.url }}" alt="{{ studiu.titlu }}" class="card__img">
+                {% endif %}
+                <div class="case__meta">
+                    <span class="case__canal">{{ studiu.get_canal_display }}</span>
+                    <span class="case__industrie">{{ studiu.get_industrie_display }}</span>
+                </div>
+                <h3 class="card__title">{{ studiu.client }}</h3>
+                <p class="card__text">{{ studiu.descriere_scurta }}</p>
+                {% if studiu.get_metrici %}
+                <div class="case__metrici">
+                    {% for m in studiu.get_metrici %}
+                    <div class="case__metrica">
+                        <span class="case__metrica-val">{{ m.valoare }}</span>
+                        <span class="case__metrica-label">{{ m.label }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <a href="{{ studiu.get_absolute_url }}" class="btn btn-outline">Vezi studiul →</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p style="color: var(--color-text-muted); text-align:center;">Studiile de caz vor fi disponibile in curand.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

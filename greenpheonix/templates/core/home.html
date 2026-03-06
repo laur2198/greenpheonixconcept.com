@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Green Pheonix Concept | Agentie de Performance Marketing & Web{% endblock %}
+{% block meta_description %}Construim sisteme digitale care convertesc: Ads + Landing Pages + Tracking. Scalam afaceri din Romania prin strategii bazate pe date si executie rapida.{% endblock %}
+{% block og_title %}Green Pheonix Concept | Agentie de Performance Marketing{% endblock %}
+{% block og_description %}Nu vanam trenduri. Construim sisteme digitale predictibile pentru cresterea profitului tau.{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero-sophisticated" id="hero">
+    <div class="bg-grid-layer"></div>
+
+    <div class="hero-tech-header container">
+        <div class="tech-item">
+            <span class="pulsing-dot"></span> SISTEM ONLINE
+        </div>
+        <div class="tech-item desktop-only">
+            LOC: BRASOV &nbsp; [45.6579° N, 25.6012° E]
+        </div>
+        <div class="tech-item">
+            AGENTIE_VER_2.5
+        </div>
+    </div>
+
+    <div class="hero-main-layout">
+        <div class="hero-text-col">
+            <h1 class="sophisticated-headline">
+                <span class="line-1">PRECIZIE</span>
+                <span class="line-2">PERFORMANTA</span>
+                <span class="line-3">MARKETING.</span>
+            </h1>
+            <div class="hero-description-block">
+                <p>Nu vanam trenduri. Construim sisteme digitale care convertesc: ads + landing + tracking + optimizare. Un mix controlat de date, creativitate si executie rapida — ca sa ai crestere predictibila, nu "noroc".</p>
+                <div class="cta-wrapper">
+                    <a href="{% url 'contact:contact' %}" class="btn btn-primary">INCEPE PROIECTUL</a>
+                    <a href="{% url 'studii_de_caz:list' %}" class="link-minimal">VEZI STUDII DE CAZ -></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual-col">
+            <div class="floating-card">
+                <div class="card-media">
+                    <img src="{% static 'img/hero_gpc.svg' %}" alt="Green Pheonix Agency Dashboard ROAS">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-data">
+                    <div class="data-row">
+                        <span>ROAS CURENT</span>
+                        <span class="text-brand">4.8X</span>
+                    </div>
+                    <div class="data-row">
+                        <span>CAMPANII ACTIVE</span>
+                        <span>7</span>
+                    </div>
+                    <div class="scan-line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-ticker-bottom">
+        <div class="ticker-track">
+            &nbsp;&nbsp;&nbsp;/// STRATEGIE /// AUDIT /// IMPLEMENTARE /// SCALARE /// TRACKING /// CRO /// CREATIVE /// AUTOMATIZARE /// STRATEGIE /// AUDIT /// IMPLEMENTARE /// SCALARE /// TRACKING /// CRO /// CREATIVE /// AUTOMATIZARE /// STRATEGIE /// AUDIT /// IMPLEMENTARE /// SCALARE /// TRACKING /// CRO /// CREATIVE /// AUTOMATIZARE ///
+        </div>
+    </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="inline-clients-wrapper">
+    <div class="inline-top-text">Din Romania, pentru branduri care vor crestere reala.</div>
+    <div class="inline-sentence">
+        NOI CONSTRUIM SISTEME PENTRU <span class="brand-slot">BRANDURI</span>, CRESTEM CERERI PENTRU <span class="brand-slot">BPD TRANSPORT</span> SI OPTIMIZAM CONVERSII PENTRU <span class="brand-slot">AFACERI AMBITIOASE</span>.
+    </div>
+</section>
+
+<!-- CIFRE CHEIE -->
+<div class="metrics-section">
+    <div class="metrics-grid">
+        <div class="metric-item">
+            <div class="metric-value">455K+</div>
+            <div class="metric-label">Impresii Generate</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-value">320K+</div>
+            <div class="metric-label">Utilizatori Atinsi</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-value">0.57 RON</div>
+            <div class="metric-label">Cost Mediu / Click</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-value">4+</div>
+            <div class="metric-label">Clienti Activi</div>
+        </div>
+    </div>
+</div>
+
+<!-- SERVICES STACK -->
+<section class="stack-scroll-wrapper">
+    <h3 class="stack-section-title">/// CAPABILITATI DE BAZA</h3>
+    <div class="sticky-container">
+
+        <div class="sticky-card" style="top: 80px; z-index: 1;">
+            <div class="sticky-header">
+                <div class="sticky-num">1</div>
+                <div class="sticky-title">AUDIT &amp; STRATEGIE</div>
+            </div>
+            <div class="sticky-body">
+                <div>
+                    <p class="sticky-desc">Nu incepem cu "ce credem". Incepem cu ce spun datele. Analizam funnel-ul, tracking-ul si oferta, apoi construim un plan clar: ce testam, de ce si in ce ordine.</p>
+                    <a href="{% url 'servicii:audit' %}" class="sticky-link">CERE UN AUDIT -></a>
+                    <div class="sticky-big-type">STRATEGIE</div>
+                </div>
+                <a href="{% url 'servicii:audit' %}" class="poster-visual">
+                    <div class="sticky-poster" style="background: var(--brand-primary); color: #000;">
+                        <div style="font-family: var(--font-mono); font-size: 0.65rem; border-bottom: 1px solid #000; padding-bottom: 8px;">GPC REPORT</div>
+                        <div style="font-family: var(--font-title); font-size: 3rem; font-weight: 700; line-height: 1;">MARKET<br>FIT</div>
+                        <div style="font-family: var(--font-mono); font-size: 0.65rem;">CLICK TO START</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="sticky-card" style="top: 140px; z-index: 2;">
+            <div class="sticky-header">
+                <div class="sticky-num">2</div>
+                <div class="sticky-title">WEBSITE-URI CARE VAND</div>
+            </div>
+            <div class="sticky-body">
+                <div>
+                    <p class="sticky-desc">Viteza + conversie. Landing pages si site-uri gandite ca instrumente de vanzare: structura clara, copy convingator, UX fara zgomot si optimizare pentru mobil.</p>
+                    <a href="{% url 'servicii:web' %}" class="sticky-link">VEZI PROCESUL WEB -></a>
+                    <div class="sticky-big-type">DESIGN</div>
+                </div>
+                <a href="{% url 'servicii:web' %}" class="poster-visual">
+                    <div class="sticky-poster" style="background: #000; color: #fff; border: 1px solid var(--border-color);">
+                        <div style="font-family: var(--font-mono); font-size: 0.65rem; border: 1px solid #fff; width: fit-content; padding: 4px 8px;">UI KIT</div>
+                        <div style="font-family: var(--font-title); font-size: 3rem; font-weight: 700; line-height: 1;">UX<br>FLOW</div>
+                        <div style="font-family: var(--font-mono); font-size: 0.65rem; opacity: 0.5;">CLICK FOR DETAILS</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="sticky-card" style="top: 200px; z-index: 3;">
+            <div class="sticky-header">
+                <div class="sticky-num">3</div>
+                <div class="sticky-title">PERFORMANCE ADS</div>
+            </div>
+            <div class="sticky-body">
+                <div>
+                    <p class="sticky-desc">Motorul de scalare. Campanii Meta, Google si TikTok, cu tracking corect si testare constanta pe unghiuri + creative. Optimizam zilnic pentru profit, nu pentru vanity metrics.</p>
+                    <a href="{% url 'servicii:ads' %}" class="sticky-link">VEZI STRATEGIA ADS -></a>
+                    <div class="sticky-big-type">CRESTERE</div>
+                </div>
+                <a href="{% url 'servicii:ads' %}" class="poster-visual">
+                    <div class="sticky-poster" style="background: #fff; color: #FF0033;">
+                        <div style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em;">ROAS REPORT</div>
+                        <div style="font-family: var(--font-title); font-size: 4rem; font-weight: 700; line-height: 0.9;">4.5X</div>
+                        <div style="color: #000; border-top: 2px solid #000; padding-top: 8px; font-family: var(--font-mono); font-size: 0.65rem;">CLICK TO SCALE</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO EDITORIAL -->
+{% if studii_featured %}
+<section class="portfolio-editorial-wrapper" id="portfolio">
+    <div class="portfolio-sidebar">
+        <div>
+            <h2 class="portfolio-sidebar-title">STUDII DE CAZ</h2>
+            <div class="portfolio-sidebar-desc">Rezultate reale, nu teorie. Vezi cum transformam bugetele in crestere masurabila: lead-uri, vanzari si conversii.</div>
+            <a href="{% url 'studii_de_caz:list' %}" class="link-minimal">VEZI TOATE -></a>
+        </div>
+    </div>
+    <div class="portfolio-feed">
+        {% for studiu in studii_featured %}
+        <a href="{{ studiu.get_absolute_url }}" class="editorial-card" style="{% if not forloop.first %}margin-top: 3rem; border-top: 1px solid var(--border-color); padding-top: 3rem;{% endif %}">
+            {% if studiu.imagine_cover %}
+            <div class="editorial-img-container">
+                <div class="editorial-img">
+                    <img src="{{ studiu.imagine_cover.url }}" alt="{{ studiu.titlu }}" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+            {% endif %}
+            <div class="editorial-header">
+                <h3 class="editorial-title">{{ studiu.titlu|upper }}</h3>
+                <span class="read-link">VEZI CAZUL <span class="read-arrow">-></span></span>
+            </div>
+            <p class="editorial-desc">{{ studiu.descriere_scurta }}</p>
+            {% if studiu.get_metrici %}
+            <div class="case__metrici" style="margin-top: 1.5rem; max-width: 500px;">
+                {% for m in studiu.get_metrici %}
+                <div class="case__metrica">
+                    <span class="case__metrica-val">{{ m.valoare }}</span>
+                    <span class="case__metrica-label">{{ m.label }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- FAQ -->
+<section class="faq-section">
+    <div class="faq-header">
+        <h2>INTREBARI FRECVENTE</h2>
+    </div>
+    <div class="faq-container">
+        <details class="faq-item">
+            <summary>
+                <span class="faq-q">01</span>
+                <span class="faq-title">CARE ESTE BUGETUL MINIM RECOMANDAT?</span>
+                <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+                <p>Depinde de industrie si obiectiv. Ca regula, ai nevoie de suficient buget incat algoritmii sa iasa din "learning" si sa putem optimiza. Daca bugetul e mic, lucram mai intai la oferta, landing si tracking, apoi scalam.</p>
+            </div>
+        </details>
+        <details class="faq-item">
+            <summary>
+                <span class="faq-q">02</span>
+                <span class="faq-title">IN CAT TIMP APAR REZULTATELE?</span>
+                <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+                <p>Primele semnale apar in 48–72h de la lansare, dar optimizarea reala se vede dupa 2–4 saptamani, dupa ce strangem date relevante si eliminam risipa.</p>
+            </div>
+        </details>
+        <details class="faq-item">
+            <summary>
+                <span class="faq-q">03</span>
+                <span class="faq-title">LUCRATI PE CONTUL MEU SAU PE AL VOSTRU?</span>
+                <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+                <p>Intotdeauna pe contul tau. Datele tale, contul tau — ai proprietate 100%. Nu esti niciodata captiv.</p>
+            </div>
+        </details>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="newsletter-section" id="cta">
+    <div class="newsletter-container">
+        <h3 style="font-family: var(--font-title); font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; font-weight: 700; line-height: 1; margin-bottom: 1rem;">Hai sa-ti construim cresterea.</h3>
+        <p style="color: var(--text-secondary); margin: 15px 0 30px;">Spune-mi unde vrei sa ajungi si iti trimit un plan clar in 24h.</p>
+        <a href="{% url 'contact:contact' %}" class="btn btn-primary">PROGRAMEAZA O DISCUTIE</a>
+    </div>
+</section>
+
+{% endblock %}

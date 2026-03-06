@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section page-hero" style="min-height:60vh; display:flex; align-items:center;">
+    <div class="container" style="text-align:center;">
+        <h1 class="page-hero__title">
+            {% if "succes" == "checkout" %}Plata Online{% elif "succes" == "succes" %}Plata Finalizata{% else %}Eroare la Plata{% endif %}
+        </h1>
+        {% if error %}<p style="color: var(--color-text-muted);">{{ error }}</p>{% endif %}
+        <a href="{% url 'core:home' %}" class="btn btn-outline" style="margin-top:2rem;">Inapoi acasa</a>
+    </div>
+</section>
+{% endblock %}

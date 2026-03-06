@@ -1,0 +1,44 @@
+{% load static %}
+<footer class="footer-brutalist">
+    <div class="footer-giant-text">GREEN PHEONIX<sup>&reg;</sup></div>
+
+    <div class="footer-nav-row">
+        <div class="footer-menu">
+            <a href="{% url 'servicii:ads' %}" class="footer-link">Expertiza Ads</a>
+            <a href="{% url 'servicii:web' %}" class="footer-link">Web Engineering</a>
+            <a href="{% url 'studii_de_caz:list' %}" class="footer-link">Studii de Caz</a>
+            <a href="{% url 'core:despre' %}" class="footer-link">Studio</a>
+        </div>
+        <a href="{% url 'contact:contact' %}" class="footer-cta-link">Programeaza o discutie &rarr;</a>
+    </div>
+
+    <div class="footer-legal-row">
+        <div class="footer-legal-links">
+            <a href="{% url 'core:confidentialitate' %}" class="footer-privacy-link">Confidentialitate</a>
+            <a href="{% url 'core:termeni' %}" class="footer-privacy-link">Termeni</a>
+            <a href="{% url 'core:anulare' %}" class="footer-privacy-link">Anulare</a>
+            <div class="footer-legal-logos">
+                <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">
+                    <img src="{% static 'img/solutionarea_alternativa.png' %}" alt="ANPC SAL">
+                </a>
+                <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">
+                    <img src="{% static 'img/solutionarea_oline.png' %}" alt="SOL">
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-social">
+            <a href="https://www.facebook.com/profile.php?id=100079698837895" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://www.instagram.com/green_pheonix_/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37a4 4 0 1 1-4.63-3.37 4 4 0 0 1 4.63 3.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+            </a>
+            <a href="https://www.tiktok.com/@green.pheonix.concept" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.8 1.2 2 2 4 2v4c-1.7 0-3.2-.5-4.5-1.4V15a5 5 0 1 1-5-5c.6 0 1.2.1 1.7.3v3.9a2 2 0 1 0 2.3 2V3z"></path></svg>
+            </a>
+        </div>
+
+        <div class="footer-rights">&copy; {% now "Y" %} GREEN PHEONIX CONCEPT SRL | CUI: RO45667331</div>
+    </div>
+</footer>

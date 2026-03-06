@@ -1,13 +1,23 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<section class="section page-hero" style="text-align:center; min-height: 70vh; display:flex; align-items:center;">
-    <div class="container">
-        <p class="section__eyebrow" style="color: var(--color-accent);">// MULTUMIM!</p>
-        <h1 class="page-hero__title">Mesajul tau a fost trimis</h1>
-        <p class="page-hero__subtitle">Iti vom raspunde in maximum 24 de ore cu o oferta personalizata.<br>
-        Ai urgente? Scrie-ne pe <a href="https://wa.me/40793650902" style="color:var(--color-accent)">WhatsApp</a>.</p>
-        <a href="{% url 'core:home' %}" class="btn btn-primary" style="margin-top: 2rem;">Inapoi acasa</a>
+<div class="noise-overlay"></div>
+<section style="min-height:80vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:80px 20px;">
+    <div>
+        <p style="font-family:var(--font-mono); font-size:0.75rem; color:var(--brand-primary); letter-spacing:3px; margin-bottom:24px;">// MESAJ PRIMIT ✓</p>
+        <h1 style="font-family:var(--font-display); font-size:clamp(2rem, 6vw, 4rem); font-weight:800; text-transform:uppercase; line-height:1; margin-bottom:24px;">
+            Mulțumim!<br><span style="-webkit-text-stroke:1px var(--text-primary); color:transparent;">Am primit mesajul tău.</span>
+        </h1>
+        <p style="font-size:1rem; opacity:0.7; max-width:480px; margin:0 auto 12px;">
+            Îți vom răspunde în maximum 24 de ore lucrătoare.
+        </p>
+        <p style="font-size:0.9rem; opacity:0.5; max-width:480px; margin:0 auto 40px;">
+            Dacă ai urgențe, ne poți scrie pe <a href="https://wa.me/40793650902" style="color:var(--brand-primary);">WhatsApp la +40 793 650 902</a>.
+        </p>
+        <a href="{% url 'core:home' %}" style="display:inline-block; font-family:var(--font-mono); font-size:0.8rem; color:var(--text-muted); text-decoration:none; border-bottom:1px solid var(--border-color); padding-bottom:2px; letter-spacing:2px;">
+            ← ÎNAPOI LA PAGINA PRINCIPALĂ
+        </a>
     </div>
 </section>
 {% endblock %}

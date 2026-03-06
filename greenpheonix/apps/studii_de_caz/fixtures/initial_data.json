@@ -1,0 +1,62 @@
+[
+  {
+    "model": "studii_de_caz.studiudecaz",
+    "pk": 1,
+    "fields": {
+      "titlu": "BPD Transport — Lead Generation prin Meta Ads & Website",
+      "slug": "bpd-transport-meta-ads-lead-generation",
+      "client": "BPD Transport",
+      "industrie": "transport",
+      "canal": "mix",
+      "descriere_scurta": "Sistem complet de generare clienți pentru firmă de transport: Meta Ads, landing page optimizat și automatizare. Rezultat: -35% cost per lead, +120 rezervări/lună.",
+      "descriere_completa": "BPD Transport este o companie din Brașov specializată în transport persoane și curse private. Înainte de colaborare, clienții veneau exclusiv prin recomandări — fără sistem de marketing online.\n\nAm construit de la zero un ecosistem digital: landing page de conversie, campanii Meta Ads targetate pe demografica corectă și un sistem de automatizare a rezervărilor care funcționează 24/7.\n\nCampaniile au fost optimizate pe conversii (nu pe reach sau engagement), cu audiențe lookalike bazate pe clienții existenți și retargeting pe vizitatorii site-ului.",
+      "obiectiv": "Generarea de rezervări online într-un mod predictibil și scalabil, reducând dependența de recomandări și apeluri telefonice manuale. Clientul dorea minimum 80 rezervări noi pe lună la un cost acceptabil per achiziție.",
+      "solutie": "Creare landing page de conversie (fără distractori, focus total pe formular)\nCampanii Meta Ads cu obiectiv Lead Generation\nAudiente Lookalike bazate pe baza de date existenta a clientului\nRetargeting cu oferta speciala pentru vizitatorii care nu au convertit\nSetare Facebook Pixel + Conversions API pentru tracking precis\nAutomatizare email/SMS la primirea unui lead nou\nRaportare lunara cu metrici clare: CPL, ROAS, rezervari confirmate",
+      "rezultate": "În primele 90 de zile am generat 127 rezervări confirmate, față de media istorică de ~30/lună prin metode tradiționale. Costul per lead a scăzut de la 45 RON (estimat inițial) la 29 RON — o reducere de 35%. Rata de conversie landing page: 8.4% (media industriei: 2-3%). Sistemul rulează 24/7 fără intervenție manuală pentru calificarea lead-urilor.",
+      "imagine_cover": "",
+      "imagine_rezultate": "",
+      "data_proiect": "2024-06-01",
+      "featured": true,
+      "activ": true,
+      "creat_la": "2024-09-01T10:00:00Z",
+      "metrica_1_label": "Reducere cost per lead",
+      "metrica_1_valoare": "-35%",
+      "metrica_2_label": "Rezervări / lună",
+      "metrica_2_valoare": "+120",
+      "metrica_3_label": "Sistem activ",
+      "metrica_3_valoare": "24/7",
+      "metrica_4_label": "Rată conversie LP",
+      "metrica_4_valoare": "8.4%"
+    }
+  },
+  {
+    "model": "studii_de_caz.studiudecaz",
+    "pk": 2,
+    "fields": {
+      "titlu": "CBS Express — Creștere Organică și Google Ads",
+      "slug": "cbs-express-google-ads-crestere-organica",
+      "client": "CBS Express",
+      "industrie": "transport",
+      "canal": "google",
+      "descriere_scurta": "Campanii Google Ads + SEO pentru firmă de curierat și logistică. Focus pe cuvinte cheie cu intenție comercială ridicată.",
+      "descriere_completa": "CBS Express activează în sectorul curierat B2B din România. Provocarea principală: competiție ridicată pe cuvinte cheie generice, buget limitat, nevoie de lead-uri B2B calificate.\n\nStrategia a combinat Google Search Ads (focus pe long-tail keywords cu intenție comercială) cu optimizare SEO on-page pentru capturarea traficului organic pe termen lung.",
+      "obiectiv": "Generarea de lead-uri B2B calificate (companii care au nevoie de curierat regulat), reducând costul per achiziție față de campaniile anterioare gestionate intern.",
+      "solutie": "Audit complet conturi Google Ads existente\nRestructurare campanii pe grupuri de anunturi tematice\nTargetare long-tail keywords cu intentie comerciala ridicata\nOptimizare pagini de destinatie pentru rata de conversie\nSetare Google Tag Manager + Google Analytics 4\nRaportare lunara cu dashboard personalizat",
+      "rezultate": "Reducere de 28% a costului per click prin restructurarea campaniilor și eliminarea cuvintelor cheie neperformante. Creștere cu 65% a lead-urilor calificate în primele 60 de zile. Rata de conversie a crescut de la 1.8% la 4.2% după optimizarea landing page-urilor.",
+      "imagine_cover": "",
+      "imagine_rezultate": "",
+      "data_proiect": "2024-09-01",
+      "featured": true,
+      "activ": true,
+      "creat_la": "2024-11-01T10:00:00Z",
+      "metrica_1_label": "Reducere cost/click",
+      "metrica_1_valoare": "-28%",
+      "metrica_2_label": "Creștere lead-uri",
+      "metrica_2_valoare": "+65%",
+      "metrica_3_label": "Rată conversie",
+      "metrica_3_valoare": "4.2%",
+      "metrica_4_label": "Timp optimizare",
+      "metrica_4_valoare": "60 zile"
+    }
+  }
+]

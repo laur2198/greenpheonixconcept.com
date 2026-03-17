@@ -1,14 +1,17 @@
 from django.shortcuts import render
 from apps.studii_de_caz.models import StudiuDeCaz
 from apps.blog.models import Articol
+from apps.servicii.models import Pachet
 
 
 def home(request):
     studii_featured = StudiuDeCaz.objects.filter(featured=True, activ=True)[:3]
     articole_recente = Articol.objects.filter(status="publicat")[:3]
+    pachete = Pachet.objects.filter(activ=True)[:3]
     context = {
         "studii_featured": studii_featured,
         "articole_recente": articole_recente,
+        "pachete": pachete,
         "page_title": "Agenție Marketing Digital Brașov | Green Pheonix Concept",
         "meta_description": "Campanii Meta Ads, Google Ads și web development. Rezultate măsurabile, prețuri transparente.",
     }

@@ -39,29 +39,39 @@
         {% if studii %}
         <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:2px; margin-top:20px;">
             {% for studiu in studii %}
-            <article style="background:var(--bg-card); border:1px solid var(--border-color); padding:40px; position:relative; overflow:hidden; transition:border-color 0.3s;" onmouseover="this.style.borderColor='var(--brand-primary)'" onmouseout="this.style.borderColor='var(--border-color)'">
-                <p style="font-family:var(--font-mono); font-size:0.7rem; color:var(--brand-primary); letter-spacing:2px; margin-bottom:16px;">
-                    {{ studiu.get_canal_display|upper }} · {{ studiu.get_industrie_display|upper }}
-                </p>
-                <h3 style="font-family:var(--font-display); font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:12px; line-height:1.2;">
-                    {{ studiu.client }}
-                </h3>
-                <p style="font-size:0.9rem; opacity:0.7; margin-bottom:28px; line-height:1.6;">{{ studiu.descriere_scurta }}</p>
-
-                {% if studiu.get_metrici %}
-                <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-bottom:28px; padding:20px; background:rgba(0,255,136,0.03); border:1px solid rgba(0,255,136,0.1);">
-                    {% for m in studiu.get_metrici|slice:":4" %}
-                    <div>
-                        <p style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:var(--brand-primary);">{{ m.valoare }}</p>
-                        <p style="font-family:var(--font-mono); font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">{{ m.label }}</p>
-                    </div>
-                    {% endfor %}
+            <article style="background:var(--bg-card); border:1px solid var(--border-color); position:relative; overflow:hidden; transition:border-color 0.3s;" onmouseover="this.style.borderColor='var(--brand-primary)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                {% if studiu.imagine_cover %}
+                <div style="height:200px; overflow:hidden;">
+                    <img src="{{ studiu.imagine_cover.url }}" alt="{{ studiu.client }}" style="width:100%; height:100%; object-fit:cover; opacity:0.7; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
                 </div>
                 {% endif %}
+                <div style="padding:32px 40px;">
+                    <p style="font-family:var(--font-mono); font-size:0.7rem; color:var(--brand-primary); letter-spacing:2px; margin-bottom:16px;">
+                        {% if studiu.nisa %}{{ studiu.nisa|upper }}{% else %}{{ studiu.get_canal_display|upper }} · {{ studiu.get_industrie_display|upper }}{% endif %}
+                    </p>
+                    <h3 style="font-family:var(--font-display); font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-bottom:8px; line-height:1.2;">
+                        {{ studiu.client }}
+                    </h3>
+                    {% if studiu.perioada %}
+                    <p style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted); margin-bottom:16px;">{{ studiu.perioada }}</p>
+                    {% endif %}
+                    <p style="font-size:0.9rem; opacity:0.7; margin-bottom:28px; line-height:1.6;">{{ studiu.descriere_scurta }}</p>
 
-                <a href="{{ studiu.get_absolute_url }}" style="display:inline-block; font-family:var(--font-mono); font-size:0.8rem; color:var(--brand-primary); text-decoration:none; letter-spacing:2px; border-bottom:1px solid var(--brand-primary); padding-bottom:2px;">
-                    VEZI STUDIUL →
-                </a>
+                    {% if studiu.get_metrici %}
+                    <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-bottom:28px; padding:20px; background:rgba(0,255,136,0.03); border:1px solid rgba(0,255,136,0.1);">
+                        {% for m in studiu.get_metrici|slice:":4" %}
+                        <div>
+                            <p style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:var(--brand-primary);">{{ m.valoare }}</p>
+                            <p style="font-family:var(--font-mono); font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">{{ m.label }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <a href="{{ studiu.get_absolute_url }}" style="display:inline-block; font-family:var(--font-mono); font-size:0.8rem; color:var(--brand-primary); text-decoration:none; letter-spacing:2px; border-bottom:1px solid var(--brand-primary); padding-bottom:2px;">
+                        VEZI STUDIUL COMPLET →
+                    </a>
+                </div>
             </article>
             {% endfor %}
         </div>

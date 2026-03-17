@@ -98,3 +98,16 @@ BT_PAY_MERCHANT_ID = config("BT_PAY_MERCHANT_ID", default="")
 BT_PAY_SECRET_KEY = config("BT_PAY_SECRET_KEY", default="")
 BT_PAY_TERMINAL_ID = config("BT_PAY_TERMINAL_ID", default="")
 BT_PAY_ENVIRONMENT = config("BT_PAY_ENVIRONMENT", default="sandbox")
+
+# Stripe
+STRIPE_PUBLIC_KEY = config("STRIPE_PUBLIC_KEY", default="")
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY", default="")
+STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET", default="")
+STRIPE_PRICE_ID_STARTER = config("STRIPE_PRICE_ID_STARTER", default="")
+STRIPE_PRICE_ID_BUSINESS = config("STRIPE_PRICE_ID_BUSINESS", default="")
+STRIPE_PRICE_ID_PRO = config("STRIPE_PRICE_ID_PRO", default="")
+
+# Auth redirects
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/plati/portal/"
+LOGOUT_REDIRECT_URL = "/"

@@ -1,4 +1,15 @@
 from django.shortcuts import render
+from .models import Pachet
+
+
+def pachete(request):
+    """Pagina cu pachetele de servicii și prețuri."""
+    pachete_active = Pachet.objects.filter(activ=True)
+    return render(request, "servicii/pachete.html", {
+        "pachete": pachete_active,
+        "page_title": "Pachete & Prețuri | Green Pheonix Concept",
+        "meta_description": "Pachete clare de marketing digital. Starter 300€, Business 600€, Pro 1200€. Prețuri corecte, rezultate măsurabile.",
+    })
 
 
 def ads(request):

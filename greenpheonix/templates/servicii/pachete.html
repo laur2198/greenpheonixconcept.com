@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Pachete & Prețuri | Green Pheonix Concept{% endblock %}
+{% block meta_description %}Pachete clare de marketing digital. Starter 300€, Business 600€, Pro 1200€. Prețuri corecte, rezultate măsurabile.{% endblock %}
+
+{% block content %}
+<section class="section page-hero">
+    <div class="container">
+        <p class="section__eyebrow">// PACHETE & PREȚURI</p>
+        <h1 class="page-hero__title">Pachete clare.<br><span class="accent">Prețuri corecte.</span></h1>
+        <p class="page-hero__subtitle">Fără surprize, fără contracte ascunse. Alegi pachetul care se potrivește afacerii tale și lucrăm împreună.</p>
+    </div>
+</section>
+
+<!-- BANNER PROMO TRIAL -->
+<section style="padding:0 0 1rem;">
+    <div class="container">
+        <div style="background:linear-gradient(135deg, rgba(67,160,71,0.08) 0%, rgba(201,168,76,0.08) 100%); border:1px solid rgba(67,160,71,0.3); border-radius:8px; padding:1.25rem 2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>
+                <p style="font-family:'Space Mono',monospace; font-size:0.65rem; color:var(--brand-primary,#43A047); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:4px;">// OFERTĂ SPECIALĂ</p>
+                <p style="font-weight:700; font-size:1rem; margin:0;">Nu ești sigur? <span style="color:var(--brand-primary,#43A047);">Testează 7 zile pentru doar 50€.</span> Audit + strategie + primii pași implementați.</p>
+            </div>
+            <a href="{% url 'plati:promo_trial' %}" class="btn btn-primary" style="white-space:nowrap;">
+                Începe Trial-ul →
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="pachete-grid">
+            {% for pachet in pachete %}
+            <div class="pachet-card {% if pachet.recomandat %}pachet-card--recomandat{% endif %}">
+                {% if pachet.recomandat %}
+                <div class="pachet-badge">⭐ Cel mai ales</div>
+                {% endif %}
+
+                <div class="pachet-header">
+                    <p class="pachet-tier">{{ pachet.get_tier_display }}</p>
+                    <h2 class="pachet-nume">{{ pachet.nume }}</h2>
+                    <div class="pachet-pret">
+                        <span class="pachet-pret__suma">{{ pachet.pret_lunar|floatformat:0 }}€</span>
+                        <span class="pachet-pret__perioada">/lună</span>
+                    </div>
+                    {% if pachet.pret_setup > 0 %}
+                    <p class="pachet-setup">+ {{ pachet.pret_setup|floatformat:0 }}€ setup o singură dată</p>
+                    {% else %}
+                    <p class="pachet-setup pachet-setup--gratuit">✓ Setup inclus gratuit</p>
+                    {% endif %}
+                </div>
+
+                <p class="pachet-descriere">{{ pachet.descriere }}</p>
+
+                <ul class="pachet-features">
+                    {% for feature in pachet.features %}
+                    <li>
+                        <span class="pachet-check">✓</span>
+                        {{ feature }}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="pachet-cta">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'plati:checkout' pachet_slug=pachet.tier %}" class="btn {% if pachet.recomandat %}btn-primary{% else %}btn-outline{% endif %} btn--full">
+                        ALEGE PACHETUL →
+                    </a>
+                    <p style="font-family:var(--font-mono); font-size:0.6rem; color:var(--text-muted); text-align:center; margin-top:10px; letter-spacing:0.08em;">
+                        Plată securizată prin Stripe
+                    </p>
+                    {% else %}
+                    <a href="/login/?next={% url 'plati:checkout' pachet_slug=pachet.tier %}" class="btn {% if pachet.recomandat %}btn-primary{% else %}btn-outline{% endif %} btn--full">
+                        AUTENTIFICĂ-TE PENTRU ACCES →
+                    </a>
+                    <p style="font-family:var(--font-mono); font-size:0.6rem; color:var(--text-muted); text-align:center; margin-top:10px; letter-spacing:0.08em;">
+                        Doar clienții activi pot plăti
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p class="empty-state">Pachetele vor fi disponibile în curând.</p>
+            {% endfor %}
+        </div>
+
+        <div class="pachete-nota">
+            <p>Toate prețurile sunt în EUR, fără TVA. Bugetele de publicitate (Meta Ads, Google Ads) nu sunt incluse în prețul pachetului — se facturează separat.</p>
+            <p>Ai nevoie de ceva personalizat? <a href="https://wa.me/40793650902?text=Salut%2C+am+nevoie+de+un+pachet+personalizat" target="_blank" rel="noopener noreferrer">Scrie-ne pe WhatsApp →</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.pachete-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 3rem;
+}
+
+.pachet-card {
+    background: var(--bg-card, #F5F5F5);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pachet-card--recomandat {
+    border-color: var(--color-gold, #c9a84c);
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(201, 168, 76, 0.15);
+}
+
+.pachet-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-gold, #c9a84c);
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 4px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-family: 'Space Mono', monospace;
+}
+
+.pachet-header { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.pachet-tier {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gold, #c9a84c);
+    margin: 0;
+}
+
+.pachet-nume {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.pachet-pret {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.pachet-pret__suma {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-gold, #c9a84c);
+    line-height: 1;
+}
+
+.pachet-pret__perioada {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.pachet-setup {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    font-family: 'Space Mono', monospace;
+}
+
+.pachet-setup--gratuit { color: var(--color-green, #4caf50); }
+
+.pachet-descriere {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pachet-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.pachet-features li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.pachet-check {
+    color: var(--color-gold, #c9a84c);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.pachet-cta { margin-top: auto; }
+
+.btn--full { width: 100%; text-align: center; display: block; }
+
+.pachete-nota {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    line-height: 1.7;
+}
+
+.pachete-nota a { color: var(--color-gold, #c9a84c); }
+
+@media (max-width: 900px) {
+    .pachete-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .pachet-card--recomandat { transform: none; }
+}
+</style>
+{% endblock %}

@@ -7,9 +7,18 @@
         <ul class="navbar__links">
             <li><a href="{% url 'servicii:ads' %}">Servicii Ads</a></li>
             <li><a href="{% url 'servicii:web' %}">Web</a></li>
+            <li><a href="{% url 'servicii:pachete' %}">Pachete & Prețuri</a></li>
+            <li><a href="{% url 'plati:promo_trial' %}" style="color:var(--brand-primary,#00ff88); font-weight:700;">Trial 7 Zile — 50€</a></li>
             <li><a href="{% url 'studii_de_caz:list' %}">Portofoliu</a></li>
             <li><a href="{% url 'blog:list' %}">Blog</a></li>
             <li><a href="{% url 'core:despre' %}">Despre</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'plati:portal_client' %}">Portalul meu</a></li>
+            {% if user.is_staff %}<li><a href="/admin/">Admin</a></li>{% endif %}
+            <li><a href="{% url 'logout' %}">Deconectare</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Contul meu</a></li>
+            {% endif %}
             <li><a href="{% url 'contact:contact' %}" class="btn btn-primary">Contact</a></li>
         </ul>
         <button class="navbar__burger" id="navBurger" aria-label="Meniu">
@@ -21,9 +30,18 @@
         <ul>
             <li><a href="{% url 'servicii:ads' %}">Servicii Ads</a></li>
             <li><a href="{% url 'servicii:web' %}">Web</a></li>
+            <li><a href="{% url 'servicii:pachete' %}">Pachete & Prețuri</a></li>
+            <li><a href="{% url 'plati:promo_trial' %}" style="color:var(--brand-primary,#00ff88); font-weight:700;">Trial 7 Zile — 50€</a></li>
             <li><a href="{% url 'studii_de_caz:list' %}">Portofoliu</a></li>
             <li><a href="{% url 'blog:list' %}">Blog</a></li>
             <li><a href="{% url 'core:despre' %}">Despre</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'plati:portal_client' %}">Portalul meu</a></li>
+            {% if user.is_staff %}<li><a href="/admin/">Admin</a></li>{% endif %}
+            <li><a href="{% url 'logout' %}">Deconectare</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Contul meu</a></li>
+            {% endif %}
             <li><a href="{% url 'contact:contact' %}">Contact</a></li>
         </ul>
     </div>

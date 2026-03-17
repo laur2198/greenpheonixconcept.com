@@ -10,6 +10,7 @@ handler404 = "apps.core.views.custom_404"
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", include("django.contrib.auth.urls")),
     path("", include("apps.core.urls")),
     path("servicii/", include("apps.servicii.urls")),
     path("studii-de-caz/", include("apps.studii_de_caz.urls")),

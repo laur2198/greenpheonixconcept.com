@@ -4,17 +4,17 @@ from .models import StudiuDeCaz
 
 @admin.register(StudiuDeCaz)
 class StudiuDeCazAdmin(admin.ModelAdmin):
-    list_display = ["client", "titlu", "industrie", "canal", "data_proiect", "featured", "activ"]
-    list_filter = ["industrie", "canal", "featured", "activ"]
+    list_display = ["titlu", "client", "nisa", "featured", "activ", "creat_la"]
+    list_filter = ["featured", "activ", "industrie", "canal"]
     search_fields = ["titlu", "client"]
     list_editable = ["featured", "activ"]
     prepopulated_fields = {"slug": ("titlu",)}
     fieldsets = [
-        ("Informatii generale", {
-            "fields": ["titlu", "slug", "client", "industrie", "canal", "data_proiect", "featured", "activ"]
+        ("Info generale", {
+            "fields": ["titlu", "slug", "client", "industrie", "canal", "nisa", "perioada", "data_proiect", "featured", "activ"]
         }),
-        ("Continut", {
-            "fields": ["descriere_scurta", "descriere_completa", "obiectiv", "solutie", "rezultate"]
+        ("Conținut", {
+            "fields": ["descriere_scurta", "descriere_completa", "problema", "obiectiv", "solutie", "rezultate"]
         }),
         ("Metrici cheie", {
             "fields": [
@@ -24,7 +24,7 @@ class StudiuDeCazAdmin(admin.ModelAdmin):
                 ("metrica_4_label", "metrica_4_valoare"),
             ]
         }),
-        ("Imagini", {
-            "fields": ["imagine_cover", "imagine_rezultate"]
+        ("Media", {
+            "fields": ["imagine_cover", "logo_client", "imagine_rezultate"]
         }),
     ]

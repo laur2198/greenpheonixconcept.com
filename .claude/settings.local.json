@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python manage.py makemigrations servicii)",
+      "Bash(python -m pip install django-crispy-forms crispy-bootstrap5 django-meta)"
+    ]
+  }
+}

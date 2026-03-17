@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="section" style="min-height:80vh; padding-top:6rem;">
+    <div class="container">
+
+        {% if messages %}
+        {% for msg in messages %}
+        <div style="background:rgba(201,168,76,0.1); border:1px solid var(--color-gold,#c9a84c); border-radius:6px; padding:12px 16px; margin-bottom:2rem; color:var(--color-gold,#c9a84c);">
+            {{ msg }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if trial %}
+
+        <!-- STATUS TRIAL -->
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:3rem;">
+            <div>
+                <p class="section__eyebrow">// PORTAL TRIAL</p>
+                <h1 style="font-family:'Oswald',sans-serif; font-size:2.5rem; font-weight:700; text-transform:uppercase; margin:0;">
+                    Salut, {{ trial.nume_client|title }}
+                </h1>
+            </div>
+            <div style="text-align:right;">
+                {% if trial.este_activ %}
+                <span style="background:rgba(0,255,136,0.1); border:1px solid var(--brand-primary,#00ff88); color:var(--brand-primary,#00ff88); padding:6px 16px; border-radius:4px; font-family:'Space Mono',monospace; font-size:0.75rem; letter-spacing:0.1em;">
+                    ● ACTIV
+                </span>
+                <p style="color:var(--text-muted); font-size:0.85rem; margin-top:6px;">
+                    {{ trial.zile_ramase }} zile rămase · expiră {{ trial.data_expirare|date:"d.m.Y" }}
+                </p>
+                {% elif trial.status == "pending" %}
+                <span style="background:rgba(201,168,76,0.1); border:1px solid #c9a84c; color:#c9a84c; padding:6px 16px; border-radius:4px; font-family:'Space Mono',monospace; font-size:0.75rem; letter-spacing:0.1em;">
+                    ● ÎN AȘTEPTARE
+                </span>
+                <p style="color:var(--text-muted); font-size:0.85rem; margin-top:6px;">Plata se procesează...</p>
+                {% elif trial.status == "expirat" %}
+                <span style="background:rgba(244,67,54,0.1); border:1px solid #f44336; color:#f44336; padding:6px 16px; border-radius:4px; font-family:'Space Mono',monospace; font-size:0.75rem; letter-spacing:0.1em;">
+                    ● EXPIRAT
+                </span>
+                {% elif trial.status == "convertit" %}
+                <span style="background:rgba(0,255,136,0.1); border:1px solid var(--brand-primary,#00ff88); color:var(--brand-primary,#00ff88); padding:6px 16px; border-radius:4px; font-family:'Space Mono',monospace; font-size:0.75rem; letter-spacing:0.1em;">
+                    ● CONVERTIT LA PACHET
+                </span>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- GRID INFO -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin-bottom:3rem;">
+            <div style="background:var(--bg-card,#111); border:1px solid var(--border-color); border-radius:8px; padding:1.5rem;">
+                <p style="font-family:'Space Mono',monospace; font-size:0.65rem; color:var(--text-muted); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.5rem;">Suma plătită</p>
+                <p style="font-size:2rem; font-weight:700; color:var(--brand-primary,#00ff88);">{{ trial.suma }}€</p>
+            </div>
+            <div style="background:var(--bg-card,#111); border:1px solid var(--border-color); border-radius:8px; padding:1.5rem;">
+                <p style="font-family:'Space Mono',monospace; font-size:0.65rem; color:var(--text-muted); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.5rem;">Data start</p>
+                <p style="font-size:1.5rem; font-weight:700;">
+                    {% if trial.data_start %}{{ trial.data_start|date:"d.m.Y" }}{% else %}—{% endif %}
+                </p>
+            </div>
+            <div style="background:var(--bg-card,#111); border:1px solid var(--border-color); border-radius:8px; padding:1.5rem;">
+                <p style="font-family:'Space Mono',monospace; font-size:0.65rem; color:var(--text-muted); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.5rem;">Zile rămase</p>
+                <p style="font-size:2rem; font-weight:700; {% if trial.zile_ramase <= 2 %}color:#f44336;{% else %}color:var(--brand-primary,#00ff88);{% endif %}">
+                    {{ trial.zile_ramase }}
+                </p>
+            </div>
+            <div style="background:var(--bg-card,#111); border:1px solid var(--border-color); border-radius:8px; padding:1.5rem;">
+                <p style="font-family:'Space Mono',monospace; font-size:0.65rem; color:var(--text-muted); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.5rem;">Pachet de interes</p>
+                <p style="font-size:1.2rem; font-weight:700; text-transform:uppercase;">{{ trial.get_pachet_dorit_dupa_trial_display }}</p>
+            </div>
+        </div>
+
+        <!-- CE URMEAZĂ -->
+        {% if trial.este_activ or trial.status == "pending" %}
+        <div style="background:var(--bg-card,#111); border:1px solid rgba(67,160,71,0.25); border-radius:8px; padding:2rem; margin-bottom:3rem;">
+            <p style="font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--brand-primary,#00ff88); letter-spacing:0.15em; margin-bottom:1rem;">// CE URMEAZĂ</p>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem;">
+                <div>
+                    <p style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem;">📞 Zi 1 — Call inițial</p>
+                    <p style="color:var(--text-muted); font-size:0.85rem;">Te contactăm în 24h pentru a stabili obiectivele și a primi accesul la conturi.</p>
+                </div>
+                <div>
+                    <p style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem;">🔍 Zi 2-3 — Audit</p>
+                    <p style="color:var(--text-muted); font-size:0.85rem;">Analizăm tracking, ads și site-ul. Identificăm problemele și oportunitățile.</p>
+                </div>
+                <div>
+                    <p style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem;">📋 Zi 4-5 — Strategie</p>
+                    <p style="color:var(--text-muted); font-size:0.85rem;">Primești planul personalizat + primele optimizări implementate.</p>
+                </div>
+                <div>
+                    <p style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem;">🚀 Zi 6-7 — Prezentare</p>
+                    <p style="color:var(--text-muted); font-size:0.85rem;">Call final cu raport, recomandări și oferta pentru pachetul complet.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- CTA UPGRADE -->
+        {% if trial.este_activ and not trial.convertit_la_pachet %}
+        <div style="text-align:center; padding:2rem 0;">
+            <p style="color:var(--text-secondary); margin-bottom:1rem;">Mulțumit de rezultate? Continuă cu un pachet complet.</p>
+            <a href="{% url 'servicii:pachete' %}" class="btn btn-primary">
+                Vezi Pachetele Complete →
+            </a>
+        </div>
+        {% endif %}
+
+        {% else %}
+        <!-- FĂRĂ TRIAL -->
+        <div style="text-align:center; padding:4rem 0;">
+            <p style="font-size:2rem; margin-bottom:1rem;">⚡</p>
+            <h2 style="font-family:'Oswald',sans-serif; font-size:2rem; font-weight:700; text-transform:uppercase; margin-bottom:1rem;">
+                Nu ai niciun trial activ
+            </h2>
+            <p style="color:var(--text-secondary); margin-bottom:2rem;">
+                Plătește 50€ și testează serviciile noastre timp de 7 zile.
+            </p>
+            <a href="{% url 'plati:promo_trial' %}" class="btn btn-primary">
+                Începe Trial-ul →
+            </a>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

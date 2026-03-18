@@ -245,7 +245,6 @@
             `;
             document.body.appendChild(overlay);
             document.body.classList.add('cookie-modal-open');
-            document.body.style.overflow = 'hidden';
         }
 
         window.setConsent = (status) => {
@@ -255,7 +254,6 @@
             const overlay = document.getElementById('cookieOverlay');
             if (overlay) overlay.remove();
             document.body.classList.remove('cookie-modal-open');
-            document.body.style.overflow = 'auto';
         };
     };
 

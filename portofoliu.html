@@ -31,8 +31,6 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="alternate" hreflang="ro" href="https://greenpheonixconcept.com/portofoliu.html" />
-<link rel="alternate" hreflang="en" href="https://greenpheonixconcept.com/portofoliu.html?lang=en" />
-<link rel="alternate" hreflang="it" href="https://greenpheonixconcept.com/portofoliu.html?lang=it" />
 <link rel="alternate" hreflang="x-default" href="https://greenpheonixconcept.com/portofoliu.html" /></head>
 <body>
     <div class="noise-overlay"></div>
@@ -48,15 +46,11 @@
             <a href="index.html" data-lang="nav_home">Acasă</a>
             <a href="servicii-ads.html" data-lang="nav_ads">Servicii Ads</a>
             <a href="servicii-web.html" data-lang="nav_web">Servicii Web</a>
-            <a href="portofoliu.html" data-lang="nav_portfolio">Portofoliu</a>
+            <a href="portofoliu.html" data-lang="nav_portfolio" class="is-active">Portofoliu</a>
             <a href="despre.html" data-lang="nav_about">Despre</a>
 
             <div class="lang-switcher">
                 <button onclick="changeLanguage('ro')" class="lang-btn active">RO</button>
-                <span>/</span>
-                <button onclick="changeLanguage('en')" class="lang-btn">EN</button>
-                <span>/</span>
-                <button onclick="changeLanguage('it')" class="lang-btn">IT</button>
             </div>
 
             <a href="contact.html" class="pill-btn nav-contact" data-lang="nav_contact">Contact</a>
@@ -76,10 +70,6 @@
 
         <div class="lang-switcher mobile-lang-switcher">
             <button onclick="changeLanguage('ro')" class="lang-btn active">RO</button>
-            <span>/</span>
-            <button onclick="changeLanguage('en')" class="lang-btn">EN</button>
-            <span>/</span>
-            <button onclick="changeLanguage('it')" class="lang-btn">IT</button>
         </div>
     </div>
 
@@ -130,6 +120,21 @@
                     Am reparat tracking-ul, am simplificat oferta și am construit campanii pe intenție + retargeting. Rezultat: lead-uri mai bune și cost stabil, fără risipă.
                 </p>
             </a>
+
+            <div class="editorial-card" style="opacity: 0.45; cursor: default; pointer-events: none;">
+                <div class="editorial-img-container">
+                    <div class="editorial-img" style="background: var(--bg-surface); display:flex; align-items:center; justify-content:center;">
+                        <span style="font-family:var(--font-display); font-size:1rem; color:var(--text-muted); letter-spacing:3px;">ÎN CURÂND</span>
+                    </div>
+                </div>
+                <div class="editorial-header">
+                    <h3 class="editorial-title" style="color:var(--text-muted);">PROIECT NOU — E-COMMERCE</h3>
+                    <span class="read-link" style="color:var(--text-muted);">COMING SOON</span>
+                </div>
+                <p class="editorial-desc" style="color:var(--text-muted);">
+                    Studiu de caz în pregătire. Campanii Meta + Google pentru un brand de e-commerce din România.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -138,7 +143,8 @@
     
     <div class="footer-nav-row">
         <div class="footer-menu">
-            <a href="servicii-ads.html" class="footer-link" data-lang="footer_expertise">Expertiză</a>
+            <a href="servicii-ads.html" class="footer-link" data-lang="footer_expertise">Expertiță Ads</a>
+            <a href="servicii-web.html" class="footer-link">Web Design</a>
             <a href="portofoliu.html" class="footer-link" data-lang="footer_casestudies">Studii de caz</a>
             <a href="despre.html" class="footer-link" data-lang="footer_studio">Studio</a>
         </div>

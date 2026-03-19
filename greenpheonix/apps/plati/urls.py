@@ -15,8 +15,4 @@ urlpatterns = [
     path("stripe/webhook/", views.webhook, name="stripe_webhook"),
     path("anuleaza/", views.anuleaza_abonament, name="anuleaza_abonament"),
     path("portal/", views.portal_client, name="portal_client"),
-    # Faza 12 — Promo Trial 7 Zile
-    path("promo/", views.promo_trial, name="promo_trial"),
-    path("promo/checkout/", views.checkout_trial, name="checkout_trial"),
-    path("portal/trial/", views.portal_trial, name="portal_trial"),
 ]

@@ -163,6 +163,40 @@
         if (refuse) refuse.addEventListener('click', () => dismiss('denied'));
     };
 
+    // --- I18N (RO/EN JS-based) ---
+    const setupI18n = () => {
+        const translations = window.GPC_TRANSLATIONS;
+        if (!translations) return;
+
+        const saved = localStorage.getItem('gpc_lang') || 'ro';
+        applyLang(saved, translations);
+
+        document.querySelectorAll('.lang-btn-dj').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+                localStorage.setItem('gpc_lang', lang);
+                applyLang(lang, translations);
+                document.querySelectorAll('.lang-btn-dj').forEach((b) => {
+                    b.classList.toggle('active', b.dataset.lang === lang);
+                });
+            });
+        });
+
+        // Set initial active state
+        document.querySelectorAll('.lang-btn-dj').forEach((b) => {
+            b.classList.toggle('active', b.dataset.lang === saved);
+        });
+    };
+
+    const applyLang = (lang, translations) => {
+        const t = translations[lang] || translations['ro'];
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+            const key = el.dataset.i18n;
+            if (t[key] !== undefined) el.textContent = t[key];
+        });
+        document.documentElement.lang = lang;
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
         setupMenu();
         setupNavbarScroll();
@@ -172,5 +206,6 @@
         setupBrandSlot();
         setupStickyCards();
         setupCookieBanner();
+        setupI18n();
     });
 })();

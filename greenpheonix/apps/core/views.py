@@ -43,6 +43,17 @@ def anulare(request):
     })
 
 
+def landing_transport(request):
+    studiu_transport = StudiuDeCaz.objects.filter(
+        industrie="transport", activ=True
+    ).order_by("-featured", "-data_proiect").first()
+    return render(request, "core/landing_transport.html", {
+        "studiu": studiu_transport,
+        "page_title": "Marketing Transport & Logistică | Green Pheonix Concept",
+        "meta_description": "Sistem complet pentru firme de transport persoane și colete. Umplem mașinile prin Meta Ads + landing pages optimizate. Rezervări direct pe WhatsApp.",
+    })
+
+
 def custom_404(request, exception):
     return render(request, "404.html", {
         "page_title": "Pagina nu există | Green Pheonix Concept",

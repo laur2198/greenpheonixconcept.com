@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bun venit — Green Pheonix Concept</title>
+<style>
+  body { margin: 0; padding: 0; background: #f4f4f5; font-family: 'Helvetica Neue', Arial, sans-serif; color: #050505; }
+  .wrapper { max-width: 600px; margin: 40px auto; background: #fff; border: 1px solid #e0e0e0; }
+  .header { background: #050505; padding: 32px 40px; }
+  .header-logo { font-family: Georgia, serif; font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: 0.05em; }
+  .header-logo span { color: #43A047; }
+  .header-tag { font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 3px; color: rgba(255,255,255,0.4); margin-top: 6px; }
+  .body { padding: 40px; }
+  .eyebrow { font-size: 11px; letter-spacing: 3px; color: #43A047; text-transform: uppercase; margin-bottom: 8px; font-family: 'Courier New', monospace; }
+  h1 { font-size: 24px; font-weight: 800; text-transform: uppercase; margin: 0 0 24px; line-height: 1.2; }
+  p { font-size: 15px; line-height: 1.7; color: #52525b; margin: 0 0 16px; }
+  .steps { margin: 28px 0; }
+  .step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
+  .step:last-child { border-bottom: none; }
+  .step-num { width: 32px; height: 32px; background: #43A047; color: #fff; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Courier New', monospace; }
+  .step-content p { margin: 0; font-size: 14px; }
+  .step-content strong { font-size: 14px; color: #050505; }
+  .btn { display: inline-block; background: #43A047; color: #fff; text-decoration: none; padding: 14px 28px; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin: 8px 4px 8px 0; }
+  .btn-secondary { background: #fff; color: #050505; border: 1px solid #050505; }
+  .highlight-box { background: #f0fdf0; border: 1px solid #c6e6c7; padding: 20px 24px; margin: 24px 0; border-radius: 2px; }
+  .highlight-box p { margin: 0; font-size: 14px; }
+  .footer { background: #f4f4f5; padding: 24px 40px; border-top: 1px solid #e0e0e0; }
+  .footer p { font-size: 12px; color: #71717a; margin: 0; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="header-logo">GREEN <span>PHEONIX</span> CONCEPT</div>
+    <div class="header-tag">// PORTAL CLIENT ACTIV</div>
+  </div>
+  <div class="body">
+    <p class="eyebrow">// BINE AI VENIT</p>
+    <h1>Contul tău e gata, {{ email }}!</h1>
+    <p>Abonamentul tău a fost activat. Acum ai acces la portalul client unde poți vedea rapoartele lunare, livrabilele și istoricul plăților.</p>
+
+    <div class="highlight-box">
+      <p>🔐 <strong>Setează parola contului tău</strong> folosind linkul de mai jos. Linkul este valabil <strong>48 de ore</strong>.</p>
+    </div>
+
+    <a href="{{ reset_url }}" class="btn">SETEAZĂ PAROLA →</a>
+
+    <div class="steps">
+      <p style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:2px; color:#71717a; text-transform:uppercase; margin-bottom:16px;">// CE URMEAZĂ</p>
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <strong>Setează parola</strong>
+          <p>Folosește linkul de mai sus pentru a-ți securiza contul.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <strong>Kick-off call</strong>
+          <p>În 24–48h te contactez pentru a demara auditul și strategia.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <strong>Lansare campanii</strong>
+          <p>Primele campanii live în maximum 5 zile lucrătoare de la kick-off.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <strong>Rapoarte lunare</strong>
+          <p>Vei primi raportul lunar direct în portal și pe email.</p>
+        </div>
+      </div>
+    </div>
+
+    <p>Ai întrebări urgente? Scrie-mi direct:</p>
+    <a href="https://wa.me/40793650902" class="btn btn-secondary">WHATSAPP →</a>
+    <a href="mailto:contact@greenpheonixconcept.com" class="btn btn-secondary">EMAIL →</a>
+  </div>
+  <div class="footer">
+    <p>Green Pheonix Concept SRL · CUI: RO45667331 · Brașov, România<br>
+    Ai primit acest email deoarece ți-a fost creat un cont pe greenpheonixconcept.com</p>
+  </div>
+</div>
+</body>
+</html>

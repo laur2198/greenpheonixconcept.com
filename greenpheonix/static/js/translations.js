@@ -45,6 +45,11 @@ window.GPC_TRANSLATIONS = {
     svc_3_desc:    "Motorul de scalare. Campanii Meta, Google și TikTok, cu tracking corect și testare constantă.",
     svc_3_link:    "VEZI STRATEGIA ADS ->",
 
+    // Clients & Testimonials
+    clients_label:         "Branduri care au ales creșterea:",
+    testimonials_eyebrow:  "// CE SPUN CLIENȚII",
+    testimonials_title:    "Rezultate reale. Oameni reali.",
+
     // Portfolio
     portfolio_title:   "STUDII DE CAZ",
     portfolio_desc:    "Rezultate reale, nu teorie. Vezi cum transformăm bugetele în creștere măsurabilă.",
@@ -114,6 +119,11 @@ window.GPC_TRANSLATIONS = {
     svc_3_title:   "PERFORMANCE ADS",
     svc_3_desc:    "The scaling engine. Meta, Google and TikTok campaigns with proper tracking and constant testing.",
     svc_3_link:    "SEE ADS STRATEGY ->",
+
+    // Clients & Testimonials
+    clients_label:         "Brands that chose growth:",
+    testimonials_eyebrow:  "// WHAT CLIENTS SAY",
+    testimonials_title:    "Real results. Real people.",
 
     // Portfolio
     portfolio_title:   "CASE STUDIES",

@@ -15,4 +15,5 @@ urlpatterns = [
     path("stripe/webhook/", views.webhook, name="stripe_webhook"),
     path("anuleaza/", views.anuleaza_abonament, name="anuleaza_abonament"),
     path("portal/", views.portal_client, name="portal_client"),
+    path("portal/billing/", views.billing_portal, name="billing_portal"),
 ]

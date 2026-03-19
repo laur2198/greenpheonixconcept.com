@@ -27,22 +27,22 @@
     <div class="hero-main-layout">
         <div class="hero-text-col reveal">
             <h1 class="sophisticated-headline">
-                <span class="line-1">PRECIZIE</span>
-                <span class="line-2">PERFORMANȚĂ</span>
-                <span class="line-3">MARKETING.</span>
+                <span class="line-1" data-i18n="hero_h1_1">PRECIZIE</span>
+                <span class="line-2" data-i18n="hero_h1_2">PERFORMANȚĂ</span>
+                <span class="line-3" data-i18n="hero_h1_3">MARKETING.</span>
             </h1>
             <div class="hero-description-block">
-                <p>Nu vânăm trenduri. Construim sisteme digitale care convertesc: ads + landing + tracking + optimizare. Un mix controlat de date, creativitate și execuție rapidă — ca să ai creștere predictibilă, nu „noroc".</p>
+                <p data-i18n="hero_desc">Nu vânăm trenduri. Construim sisteme digitale care convertesc: ads + landing + tracking + optimizare. Un mix controlat de date, creativitate și execuție rapidă — ca să ai creștere predictibilă, nu „noroc".</p>
                 <div class="cta-wrapper">
-                    <a href="{% url 'contact:contact' %}" class="btn btn-primary">ÎNCEPE PROIECTUL</a>
-                    <a href="{% url 'studii_de_caz:list' %}" class="btn btn-outline">STUDII DE CAZ</a>
+                    <a href="{% url 'contact:contact' %}" class="btn btn-primary" data-i18n="hero_btn_1">ÎNCEPE PROIECTUL</a>
+                    <a href="{% url 'studii_de_caz:list' %}" class="btn btn-outline" data-i18n="hero_btn_2">STUDII DE CAZ</a>
                 </div>
                 <div class="hero-trust-row">
-                    <span class="hero-trust-item"><span class="hero-trust-num">4+</span> clienți activi</span>
+                    <span class="hero-trust-item"><span class="hero-trust-num">4+</span> <span data-i18n="hero_trust_1">clienți activi</span></span>
                     <span class="hero-trust-sep">·</span>
-                    <span class="hero-trust-item"><span class="hero-trust-num">455K+</span> impresii/lună</span>
+                    <span class="hero-trust-item"><span class="hero-trust-num">455K+</span> <span data-i18n="hero_trust_2">impresii/lună</span></span>
                     <span class="hero-trust-sep">·</span>
-                    <span class="hero-trust-item">Fără contract minim</span>
+                    <span class="hero-trust-item" data-i18n="hero_trust_3">Fără contract minim</span>
                 </div>
             </div>
         </div>
@@ -92,6 +92,30 @@
         </p>
     </div>
 </section>
+
+<!-- LOGO-URI CLIENȚI -->
+{% if logo_uri %}
+<section class="client-logos-section">
+    <div class="container">
+        <p class="client-logos-label" data-i18n="clients_label">Branduri care au ales creșterea:</p>
+        <div class="client-logos-grid">
+            {% for logo in logo_uri %}
+            <div class="client-logo-item">
+                {% if logo.url_site %}
+                <a href="{{ logo.url_site }}" target="_blank" rel="noopener" title="{{ logo.nume }}">
+                {% endif %}
+                {% if logo.logo %}
+                    <img src="{{ logo.logo.url }}" alt="{{ logo.nume }}" loading="lazy">
+                {% else %}
+                    <span class="client-logo-text">{{ logo.nume }}</span>
+                {% endif %}
+                {% if logo.url_site %}</a>{% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
 
 <!-- CIFRE CHEIE -->
 <div class="metrics-section metrics-section--dark">
@@ -222,6 +246,52 @@
             {% endif %}
         </a>
         {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- TESTIMONIALE -->
+{% if testimoniale %}
+<section class="testimoniale-section reveal">
+    <div class="container">
+        <div class="testimoniale-header">
+            <div>
+                <p class="section-eyebrow" data-i18n="testimonials_eyebrow">// CE SPUN CLIENȚII</p>
+                <h2 class="testimoniale-title" data-i18n="testimonials_title">Rezultate reale.<br><span class="text-outline">Oameni reali.</span></h2>
+            </div>
+        </div>
+        <div class="testimoniale-grid">
+            {% for t in testimoniale %}
+            <div class="testimonial-card">
+                <div class="testimonial-top">
+                    <div class="testimonial-stars">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= t.rating %}★{% else %}☆{% endif %}
+                        {% endfor %}
+                    </div>
+                    {% if t.rezultat_cheie %}
+                    <span class="testimonial-result">{{ t.rezultat_cheie }}</span>
+                    {% endif %}
+                </div>
+                <blockquote class="testimonial-text">„{{ t.text }}"</blockquote>
+                <div class="testimonial-author">
+                    {% if t.client_foto %}
+                    <img src="{{ t.client_foto.url }}" alt="{{ t.client_nume }}" class="testimonial-avatar" loading="lazy">
+                    {% else %}
+                    <div class="testimonial-avatar-placeholder">{{ t.client_nume|slice:":1" }}</div>
+                    {% endif %}
+                    <div>
+                        <p class="testimonial-name">{{ t.client_nume }}</p>
+                        {% if t.client_firma %}
+                        <p class="testimonial-firma">{{ t.client_firma }}{% if t.client_industrie %} · {{ t.client_industrie }}{% endif %}</p>
+                        {% elif t.client_industrie %}
+                        <p class="testimonial-firma">{{ t.client_industrie }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </section>
 {% endif %}

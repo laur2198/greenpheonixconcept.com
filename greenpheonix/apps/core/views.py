@@ -2,16 +2,24 @@ from django.shortcuts import render
 from apps.studii_de_caz.models import StudiuDeCaz
 from apps.blog.models import Articol
 from apps.servicii.models import Pachet
+from .models import Testimonial, ClientLogo
 
 
 def home(request):
     studii_featured = StudiuDeCaz.objects.filter(featured=True, activ=True)[:3]
     articole_recente = Articol.objects.filter(status="publicat")[:3]
     pachete = Pachet.objects.filter(activ=True)[:3]
+    testimoniale = Testimonial.objects.filter(activ=True, featured=True)[:6]
+    toate_testimonialele = Testimonial.objects.filter(activ=True) if not testimoniale else None
+    if not testimoniale:
+        testimoniale = Testimonial.objects.filter(activ=True)[:6]
+    logo_uri = ClientLogo.objects.filter(activ=True)[:8]
     context = {
         "studii_featured": studii_featured,
         "articole_recente": articole_recente,
         "pachete": pachete,
+        "testimoniale": testimoniale,
+        "logo_uri": logo_uri,
         "page_title": "Agenție Marketing Digital Brașov | Green Pheonix Concept",
         "meta_description": "Campanii Meta Ads, Google Ads și web development. Rezultate măsurabile, prețuri transparente.",
     }

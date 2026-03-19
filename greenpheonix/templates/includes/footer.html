@@ -4,19 +4,19 @@
 
     <div class="footer-nav-row">
         <div class="footer-menu">
-            <a href="{% url 'servicii:ads' %}" class="footer-link">Expertiza Ads</a>
-            <a href="{% url 'servicii:web' %}" class="footer-link">Web Engineering</a>
-            <a href="{% url 'studii_de_caz:list' %}" class="footer-link">Studii de Caz</a>
-            <a href="{% url 'core:despre' %}" class="footer-link">Studio</a>
+            <a href="{% url 'servicii:ads' %}" class="footer-link" data-i18n="footer_ads">Expertiză Ads</a>
+            <a href="{% url 'servicii:web' %}" class="footer-link" data-i18n="footer_web">Web Engineering</a>
+            <a href="{% url 'studii_de_caz:list' %}" class="footer-link" data-i18n="footer_cases">Studii de Caz</a>
+            <a href="{% url 'core:despre' %}" class="footer-link" data-i18n="footer_studio">Studio</a>
         </div>
-        <a href="{% url 'contact:contact' %}" class="footer-cta-link">Programeaza o discutie &rarr;</a>
+        <a href="{% url 'contact:contact' %}" class="footer-cta-link" data-i18n="footer_cta">Programează o discuție →</a>
     </div>
 
     <div class="footer-legal-row">
         <div class="footer-legal-links">
-            <a href="{% url 'core:confidentialitate' %}" class="footer-privacy-link">Confidentialitate</a>
-            <a href="{% url 'core:termeni' %}" class="footer-privacy-link">Termeni</a>
-            <a href="{% url 'core:anulare' %}" class="footer-privacy-link">Anulare</a>
+            <a href="{% url 'core:confidentialitate' %}" class="footer-privacy-link" data-i18n="footer_privacy">Confidențialitate</a>
+            <a href="{% url 'core:termeni' %}" class="footer-privacy-link" data-i18n="footer_terms">Termeni</a>
+            <a href="{% url 'core:anulare' %}" class="footer-privacy-link" data-i18n="footer_cancel">Anulare</a>
             <div class="footer-legal-logos">
                 <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">
                     <img src="{% static 'img/solutionarea_alternativa.png' %}" alt="ANPC SAL">

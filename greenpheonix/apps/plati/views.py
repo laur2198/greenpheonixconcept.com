@@ -5,7 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -225,21 +226,22 @@ def _creeaza_cont_client(subscription):
             user.set_unusable_password()
             user.save()
 
-            # Trimite email cu link setare parolă
+            # Trimite email HTML cu link setare parolă
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             token = default_token_generator.make_token(user)
-            reset_url = f"/reset/{uid}/{token}/"
-            send_mail(
-                subject="Contul tău Green Pheonix Concept a fost creat",
-                message=(
-                    f"Salut,\n\nContul tău a fost creat automat.\n"
-                    f"Setează parola accesând: {reset_url}\n\n"
-                    f"Green Pheonix Concept"
-                ),
+            reset_url = f"https://greenpheonixconcept.com/reset/{uid}/{token}/"
+            html_welcome = render_to_string("emails/welcome_client.html", {
+                "email": email,
+                "reset_url": reset_url,
+            })
+            msg_welcome = EmailMultiAlternatives(
+                subject="Contul tău Green Pheonix Concept a fost creat ✅",
+                body=f"Setează parola: {reset_url}",
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[email],
-                fail_silently=True,
+                to=[email],
             )
+            msg_welcome.attach_alternative(html_welcome, "text/html")
+            msg_welcome.send(fail_silently=True)
 
         # Creare abonament local
         pachet = _gaseste_pachet_din_subscription(subscription)
@@ -290,6 +292,29 @@ def anuleaza_abonament(request):
     abonament.save()
     messages.success(request, "Abonamentul tău a fost anulat. Vei mai avea acces până la sfârșitul perioadei curente.")
     return redirect("plati:portal_client")
+
+
+@login_required
+def billing_portal(request):
+    """Redirecționează clientul către Stripe Customer Portal pentru self-service."""
+    abonament = Abonament.objects.filter(
+        user=request.user, stripe_customer_id__gt=""
+    ).order_by("-creat_la").first()
+
+    if not abonament or not abonament.stripe_customer_id:
+        messages.error(request, "Nu există un abonament Stripe asociat contului tău.")
+        return redirect("plati:portal_client")
+
+    try:
+        return_url = request.build_absolute_uri(reverse("plati:portal_client"))
+        session = stripe_service.creeaza_portal_session(
+            customer_id=abonament.stripe_customer_id,
+            return_url=return_url,
+        )
+        return redirect(session.url)
+    except Exception as e:
+        messages.error(request, f"Nu s-a putut accesa portalul de facturare: {str(e)}")
+        return redirect("plati:portal_client")
 
 
 def contract_view(request, pachet_slug):
@@ -348,41 +373,38 @@ def semneaza_contract(request, pachet_slug):
         status="semnat",
     )
 
-    # --- EMAIL CATRE CLIENT ---
+    # --- EMAIL HTML CATRE CLIENT ---
     numar = contract.numar_contract()
-    mesaj_client = f"""Bună ziua, {nume},
-
-Confirmăm că ai semnat electronic Contractul de Prestări Servicii cu Green Pheonix Concept.
-
-📋 DETALII CONTRACT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Număr contract: {numar}
-Data semnării: {contract.data_semnare.strftime('%d.%m.%Y, %H:%M')}
-Pachet ales: {pachet.nume} ({pachet.get_tier_display()})
-Valoare lunară: {pachet.pret_lunar}€/lună
-━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-✍️ SEMNĂTURA ELECTRONICĂ
-Semnătură înregistrată: {semnatura}
-IP înregistrat: {ip}
-
-Această semnătură electronică simplă este valabilă conform Regulamentului eIDAS (Art. 3(10)).
-
-PASUL URMĂTOR: Urmează plata pentru activarea abonamentului. Vei fi redirecționat automat.
-
-Cu respect,
-Laurențiu Știrbu
-Green Pheonix Concept SRL
-📧 contact@greenpheonixconcept.com
-📱 +40 793 650 902
-"""
-    send_mail(
-        subject=f"[{numar}] Contract Semnat — {pachet.nume} | Green Pheonix Concept",
-        message=mesaj_client,
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=[email],
-        fail_silently=True,
+    url_plata = request.build_absolute_uri(
+        f"/plati/stripe/checkout/{pachet.tier}/"
     )
+    ctx_client = {
+        "nume": nume,
+        "numar": numar,
+        "data_semnare": contract.data_semnare.strftime("%d.%m.%Y, %H:%M"),
+        "pachet_nume": f"{pachet.nume} ({pachet.get_tier_display()})",
+        "pret_lunar": pachet.pret_lunar,
+        "client_firma": firma,
+        "client_cui": cui,
+        "semnatura": semnatura,
+        "ip": ip,
+        "url_plata": url_plata,
+    }
+    html_client = render_to_string("emails/contract_client.html", ctx_client)
+    text_client = (
+        f"Contract semnat: {numar}\n"
+        f"Pachet: {pachet.nume} — {pachet.pret_lunar}€/lună\n"
+        f"Data: {contract.data_semnare.strftime('%d.%m.%Y %H:%M')}\n"
+        f"Plată: {url_plata}"
+    )
+    msg_client = EmailMultiAlternatives(
+        subject=f"[{numar}] Contract Semnat — {pachet.nume} | Green Pheonix Concept",
+        body=text_client,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=[email],
+    )
+    msg_client.attach_alternative(html_client, "text/html")
+    msg_client.send(fail_silently=True)
 
     # --- EMAIL CATRE ADMIN ---
     mesaj_admin = f"""NOU CONTRACT SEMNAT

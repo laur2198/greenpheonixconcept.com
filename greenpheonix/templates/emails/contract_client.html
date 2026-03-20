@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contract Semnat — Green Pheonix Concept</title>
+<style>
+  body { margin: 0; padding: 0; background: #f4f4f5; font-family: 'Helvetica Neue', Arial, sans-serif; color: #050505; }
+  .wrapper { max-width: 600px; margin: 40px auto; background: #fff; border: 1px solid #e0e0e0; }
+  .header { background: #050505; padding: 32px 40px; text-align: left; }
+  .header-logo { font-family: Georgia, serif; font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: 0.05em; }
+  .header-logo span { color: #43A047; }
+  .body { padding: 40px; }
+  .eyebrow { font-size: 11px; letter-spacing: 3px; color: #43A047; text-transform: uppercase; margin-bottom: 8px; font-family: 'Courier New', monospace; }
+  h1 { font-size: 22px; font-weight: 800; text-transform: uppercase; margin: 0 0 24px; line-height: 1.2; }
+  p { font-size: 15px; line-height: 1.7; color: #52525b; margin: 0 0 16px; }
+  .contract-box { background: #f4f4f5; border-left: 3px solid #43A047; padding: 20px 24px; margin: 24px 0; }
+  .contract-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #e4e4e7; font-size: 13px; }
+  .contract-row:last-child { border-bottom: none; }
+  .contract-label { color: #71717a; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .contract-value { font-weight: 700; color: #050505; }
+  .sig-box { background: #f9f9f9; border: 1px dashed #e0e0e0; padding: 16px 20px; margin: 24px 0; font-size: 13px; color: #71717a; }
+  .sig-box strong { color: #050505; display: block; margin-top: 6px; font-size: 15px; }
+  .btn { display: inline-block; background: #43A047; color: #fff; text-decoration: none; padding: 14px 28px; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin: 8px 0; }
+  .footer { background: #f4f4f5; padding: 24px 40px; border-top: 1px solid #e0e0e0; }
+  .footer p { font-size: 12px; color: #71717a; margin: 0; line-height: 1.6; }
+  .divider { border: none; border-top: 1px solid #e0e0e0; margin: 28px 0; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="header-logo">GREEN <span>PHEONIX</span> CONCEPT</div>
+  </div>
+  <div class="body">
+    <p class="eyebrow">// CONTRACT SEMNAT</p>
+    <h1>Confirmăm semnarea contractului tău.</h1>
+    <p>Bună ziua, <strong>{{ nume }}</strong>,</p>
+    <p>Ai semnat electronic Contractul de Prestări Servicii cu Green Pheonix Concept SRL. Mai jos găsești o copie a detaliilor înregistrate.</p>
+
+    <div class="contract-box">
+      <div class="contract-row">
+        <span class="contract-label">Număr contract</span>
+        <span class="contract-value">{{ numar }}</span>
+      </div>
+      <div class="contract-row">
+        <span class="contract-label">Data semnării</span>
+        <span class="contract-value">{{ data_semnare }}</span>
+      </div>
+      <div class="contract-row">
+        <span class="contract-label">Pachet ales</span>
+        <span class="contract-value">{{ pachet_nume }}</span>
+      </div>
+      <div class="contract-row">
+        <span class="contract-label">Valoare lunară</span>
+        <span class="contract-value">{{ pret_lunar }}€ / lună</span>
+      </div>
+      {% if client_firma %}
+      <div class="contract-row">
+        <span class="contract-label">Firmă</span>
+        <span class="contract-value">{{ client_firma }}{% if client_cui %} | {{ client_cui }}{% endif %}</span>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="sig-box">
+      ✍️ Semnătură electronică înregistrată conform Regulamentului eIDAS (Art. 3(10))
+      <strong>„{{ semnatura }}"</strong>
+      <span style="font-size:11px; margin-top:4px; display:block;">IP: {{ ip }} · {{ data_semnare }}</span>
+    </div>
+
+    <hr class="divider">
+    <p><strong>Pasul următor:</strong> Activarea abonamentului se face prin plata online. Dacă nu ai fost redirecționat automat, apasă butonul de mai jos.</p>
+    <a href="{{ url_plata }}" class="btn">ACTIVEAZĂ ABONAMENTUL →</a>
+    <hr class="divider">
+    <p style="font-size:13px; color:#71717a;">Ai întrebări? Scrie-mi pe WhatsApp sau email:</p>
+    <p style="font-size:13px;"><a href="mailto:contact@greenpheonixconcept.com" style="color:#43A047;">contact@greenpheonixconcept.com</a> · <a href="https://wa.me/40793650902" style="color:#43A047;">+40 793 650 902</a></p>
+  </div>
+  <div class="footer">
+    <p>Green Pheonix Concept SRL · CUI: RO45667331 · Brașov, România<br>
+    Ai primit acest email deoarece ai semnat un contract pe greenpheonixconcept.com</p>
+  </div>
+</div>
+</body>
+</html>

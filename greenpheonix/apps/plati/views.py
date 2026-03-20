@@ -5,7 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -14,7 +15,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from .models import Tranzactie, Abonament, Plata, RaportClient, LivrabilClient, PromoTrial, ContractSemnat
+from .models import Tranzactie, Abonament, Plata, RaportClient, LivrabilClient, ContractSemnat
 from .bt_pay import BTPay
 from apps.servicii.models import Pachet
 from . import stripe_service
@@ -154,9 +155,6 @@ def webhook(request):
     elif event_type == "customer.subscription.created":
         _creeaza_cont_client(data)
 
-    elif event_type == "checkout.session.completed":
-        _proceseaza_trial_platit(data)
-
     return HttpResponse(status=200)
 
 
@@ -228,21 +226,22 @@ def _creeaza_cont_client(subscription):
             user.set_unusable_password()
             user.save()
 
-            # Trimite email cu link setare parolă
+            # Trimite email HTML cu link setare parolă
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             token = default_token_generator.make_token(user)
-            reset_url = f"/reset/{uid}/{token}/"
-            send_mail(
-                subject="Contul tău Green Pheonix Concept a fost creat",
-                message=(
-                    f"Salut,\n\nContul tău a fost creat automat.\n"
-                    f"Setează parola accesând: {reset_url}\n\n"
-                    f"Green Pheonix Concept"
-                ),
+            reset_url = f"https://greenpheonixconcept.com/reset/{uid}/{token}/"
+            html_welcome = render_to_string("emails/welcome_client.html", {
+                "email": email,
+                "reset_url": reset_url,
+            })
+            msg_welcome = EmailMultiAlternatives(
+                subject="Contul tău Green Pheonix Concept a fost creat ✅",
+                body=f"Setează parola: {reset_url}",
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[email],
-                fail_silently=True,
+                to=[email],
             )
+            msg_welcome.attach_alternative(html_welcome, "text/html")
+            msg_welcome.send(fail_silently=True)
 
         # Creare abonament local
         pachet = _gaseste_pachet_din_subscription(subscription)
@@ -262,39 +261,6 @@ def _creeaza_cont_client(subscription):
             )
     except Exception:
         pass  # Nu blocăm webhook-ul la erori interne
-
-
-def _proceseaza_trial_platit(session):
-    """Activează PromoTrial după plată confirmată prin Stripe Checkout."""
-    trial_id = session.get("metadata", {}).get("trial_id")
-    if not trial_id:
-        return
-    try:
-        trial = PromoTrial.objects.get(pk=int(trial_id))
-    except (PromoTrial.DoesNotExist, ValueError):
-        return
-
-    trial.status = "activ"
-    trial.data_start = timezone.now()
-    trial.data_expirare = timezone.now() + timezone.timedelta(days=7)
-    trial.save()
-
-    # Trimite email de confirmare
-    send_mail(
-        subject="✅ Plata confirmată — Trial 7 Zile Green Pheonix",
-        message=(
-            f"Salut {trial.nume_client},\n\n"
-            f"Plata ta de 50€ a fost confirmată!\n\n"
-            f"Trial-ul tău de 7 zile este acum activ.\n"
-            f"Data expirare: {trial.data_expirare.strftime('%d.%m.%Y')}\n\n"
-            f"Accesează portalul tău: https://greenpheonixconcept.com/plati/portal/trial/\n\n"
-            f"Ne vom contacta în curând pentru a demara auditul și strategia.\n\n"
-            f"Cu respect,\nLaurențiu — Green Pheonix Concept"
-        ),
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=[trial.email_client],
-        fail_silently=True,
-    )
 
 
 def _gaseste_pachet_din_subscription(subscription):
@@ -326,6 +292,29 @@ def anuleaza_abonament(request):
     abonament.save()
     messages.success(request, "Abonamentul tău a fost anulat. Vei mai avea acces până la sfârșitul perioadei curente.")
     return redirect("plati:portal_client")
+
+
+@login_required
+def billing_portal(request):
+    """Redirecționează clientul către Stripe Customer Portal pentru self-service."""
+    abonament = Abonament.objects.filter(
+        user=request.user, stripe_customer_id__gt=""
+    ).order_by("-creat_la").first()
+
+    if not abonament or not abonament.stripe_customer_id:
+        messages.error(request, "Nu există un abonament Stripe asociat contului tău.")
+        return redirect("plati:portal_client")
+
+    try:
+        return_url = request.build_absolute_uri(reverse("plati:portal_client"))
+        session = stripe_service.creeaza_portal_session(
+            customer_id=abonament.stripe_customer_id,
+            return_url=return_url,
+        )
+        return redirect(session.url)
+    except Exception as e:
+        messages.error(request, f"Nu s-a putut accesa portalul de facturare: {str(e)}")
+        return redirect("plati:portal_client")
 
 
 def contract_view(request, pachet_slug):
@@ -384,41 +373,38 @@ def semneaza_contract(request, pachet_slug):
         status="semnat",
     )
 
-    # --- EMAIL CATRE CLIENT ---
+    # --- EMAIL HTML CATRE CLIENT ---
     numar = contract.numar_contract()
-    mesaj_client = f"""Bună ziua, {nume},
-
-Confirmăm că ai semnat electronic Contractul de Prestări Servicii cu Green Pheonix Concept.
-
-📋 DETALII CONTRACT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Număr contract: {numar}
-Data semnării: {contract.data_semnare.strftime('%d.%m.%Y, %H:%M')}
-Pachet ales: {pachet.nume} ({pachet.get_tier_display()})
-Valoare lunară: {pachet.pret_lunar}€/lună
-━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-✍️ SEMNĂTURA ELECTRONICĂ
-Semnătură înregistrată: {semnatura}
-IP înregistrat: {ip}
-
-Această semnătură electronică simplă este valabilă conform Regulamentului eIDAS (Art. 3(10)).
-
-PASUL URMĂTOR: Urmează plata pentru activarea abonamentului. Vei fi redirecționat automat.
-
-Cu respect,
-Laurențiu Știrbu
-Green Pheonix Concept SRL
-📧 contact@greenpheonixconcept.com
-📱 +40 793 650 902
-"""
-    send_mail(
-        subject=f"[{numar}] Contract Semnat — {pachet.nume} | Green Pheonix Concept",
-        message=mesaj_client,
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=[email],
-        fail_silently=True,
+    url_plata = request.build_absolute_uri(
+        f"/plati/stripe/checkout/{pachet.tier}/"
     )
+    ctx_client = {
+        "nume": nume,
+        "numar": numar,
+        "data_semnare": contract.data_semnare.strftime("%d.%m.%Y, %H:%M"),
+        "pachet_nume": f"{pachet.nume} ({pachet.get_tier_display()})",
+        "pret_lunar": pachet.pret_lunar,
+        "client_firma": firma,
+        "client_cui": cui,
+        "semnatura": semnatura,
+        "ip": ip,
+        "url_plata": url_plata,
+    }
+    html_client = render_to_string("emails/contract_client.html", ctx_client)
+    text_client = (
+        f"Contract semnat: {numar}\n"
+        f"Pachet: {pachet.nume} — {pachet.pret_lunar}€/lună\n"
+        f"Data: {contract.data_semnare.strftime('%d.%m.%Y %H:%M')}\n"
+        f"Plată: {url_plata}"
+    )
+    msg_client = EmailMultiAlternatives(
+        subject=f"[{numar}] Contract Semnat — {pachet.nume} | Green Pheonix Concept",
+        body=text_client,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=[email],
+    )
+    msg_client.attach_alternative(html_client, "text/html")
+    msg_client.send(fail_silently=True)
 
     # --- EMAIL CATRE ADMIN ---
     mesaj_admin = f"""NOU CONTRACT SEMNAT
@@ -450,95 +436,6 @@ Urmează plata Stripe.
     else:
         # Redirecționare cu email prefilled pentru login/register
         return redirect(f"/login/?next=/plati/stripe/checkout/{pachet_slug}/&email={email}")
-
-
-def promo_trial(request):
-    """Landing page Pachet Promo 7 Zile — 50€ one-time."""
-    return render(request, "plati/promo_trial.html", {
-        "page_title": "Testează 7 Zile — 50€ | Green Pheonix Concept",
-        "meta_description": "Testează serviciile noastre timp de 7 zile pentru 50€. Audit, strategie și primii pași implementați.",
-    })
-
-
-def checkout_trial(request):
-    """Inițiază Stripe Payment Intent pentru Promo Trial 7 Zile."""
-    if request.method != "POST":
-        return redirect("plati:promo_trial")
-
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-    nume = request.POST.get("nume", "").strip()
-    email = request.POST.get("email", "").strip()
-    telefon = request.POST.get("telefon", "").strip()
-    nisa = request.POST.get("nisa", "").strip()
-    pachet_dorit = request.POST.get("pachet_dorit", "nedecis")
-
-    if not nume or not email:
-        messages.error(request, "Completează numele și emailul.")
-        return redirect("plati:promo_trial")
-
-    # Crează înregistrarea trial
-    trial = PromoTrial.objects.create(
-        user=request.user if request.user.is_authenticated else None,
-        nume_client=nume,
-        email_client=email,
-        telefon_client=telefon,
-        nisa_client=nisa,
-        pachet_dorit_dupa_trial=pachet_dorit,
-        status="pending",
-    )
-
-    success_url = request.build_absolute_uri(
-        reverse("plati:portal_trial") + f"?trial_id={trial.pk}"
-    )
-    cancel_url = request.build_absolute_uri(reverse("plati:promo_trial"))
-
-    try:
-        session = stripe.checkout.Session.create(
-            payment_method_types=["card"],
-            mode="payment",
-            customer_email=email,
-            line_items=[{
-                "price_data": {
-                    "currency": "eur",
-                    "unit_amount": 5000,  # 50€ în cenți
-                    "product_data": {
-                        "name": "Pachet Promo 7 Zile — Green Pheonix Concept",
-                        "description": "Acces 7 zile: audit, strategie și primii pași implementați.",
-                    },
-                },
-                "quantity": 1,
-            }],
-            success_url=success_url,
-            cancel_url=cancel_url,
-            metadata={"trial_id": str(trial.pk)},
-        )
-        trial.stripe_payment_intent_id = session.id
-        trial.save()
-        return redirect(session.url)
-    except Exception as e:
-        trial.status = "pending"
-        trial.save()
-        messages.error(request, f"Eroare la procesarea plății: {str(e)}")
-        return redirect("plati:promo_trial")
-
-
-def portal_trial(request):
-    """Portal pentru clienții cu Promo Trial activ."""
-    trial_id = request.GET.get("trial_id")
-    trial = None
-
-    if trial_id:
-        trial = PromoTrial.objects.filter(pk=trial_id).first()
-
-    if not trial and request.user.is_authenticated:
-        trial = PromoTrial.objects.filter(
-            user=request.user
-        ).order_by("-creat_la").first()
-
-    return render(request, "plati/portal_trial.html", {
-        "trial": trial,
-        "page_title": "Portal Trial | Green Pheonix Concept",
-    })
 
 
 @login_required

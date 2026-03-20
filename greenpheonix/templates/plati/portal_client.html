@@ -56,6 +56,9 @@
                     {% endif %}
 
                     <div class="abonament-actions">
+                        <a href="{% url 'plati:billing_portal' %}" class="btn btn-secondary">
+                            ⚙️ Gestionează abonamentul
+                        </a>
                         <a href="{% url 'servicii:pachete' %}" class="btn btn-secondary">Schimbă pachetul</a>
                         {% if abonament.status == "activ" %}
                         <button class="btn btn-danger" onclick="document.getElementById('modal-anulare').style.display='flex'">

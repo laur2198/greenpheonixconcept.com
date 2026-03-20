@@ -9,4 +9,5 @@ urlpatterns = [
     path("termeni/", views.termeni, name="termeni"),
     path("confidentialitate/", views.confidentialitate, name="confidentialitate"),
     path("anulare/", views.anulare, name="anulare"),
+    path("transport/", views.landing_transport, name="landing_transport"),
 ]

@@ -10,8 +10,9 @@ class StaticViewSitemap(Sitemap):
 
     def items(self):
         return [
-            "core:home", "core:despre", "contact:contact",
-            "servicii:ads", "servicii:web", "servicii:audit",
+            "core:home", "core:despre", "core:landing_transport",
+            "contact:contact",
+            "servicii:ads", "servicii:web", "servicii:audit", "servicii:pachete",
             "studii_de_caz:list", "blog:list",
         ]
 

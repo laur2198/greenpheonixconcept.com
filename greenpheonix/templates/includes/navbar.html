@@ -5,21 +5,24 @@
             <img src="{% static 'img/logo_gpc.svg' %}" alt="Green Pheonix Concept" height="32">
         </a>
         <ul class="navbar__links">
-            <li><a href="{% url 'servicii:ads' %}">Servicii Ads</a></li>
-            <li><a href="{% url 'servicii:web' %}">Web</a></li>
-            <li><a href="{% url 'servicii:pachete' %}">Pachete & Prețuri</a></li>
-            <li><a href="{% url 'plati:promo_trial' %}" style="color:var(--brand-primary,#00ff88); font-weight:700;">Trial 7 Zile — 50€</a></li>
-            <li><a href="{% url 'studii_de_caz:list' %}">Portofoliu</a></li>
-            <li><a href="{% url 'blog:list' %}">Blog</a></li>
-            <li><a href="{% url 'core:despre' %}">Despre</a></li>
+            <li><a href="{% url 'servicii:ads' %}" data-i18n="nav_ads">Servicii Ads</a></li>
+            <li><a href="{% url 'servicii:web' %}" data-i18n="nav_web">Web</a></li>
+            <li><a href="{% url 'servicii:pachete' %}" data-i18n="nav_pachete">Pachete & Prețuri</a></li>
+            <li><a href="{% url 'studii_de_caz:list' %}" data-i18n="nav_portfolio">Portofoliu</a></li>
+            <li><a href="{% url 'blog:list' %}" data-i18n="nav_blog">Blog</a></li>
+            <li><a href="{% url 'core:despre' %}" data-i18n="nav_about">Despre</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'plati:portal_client' %}">Portalul meu</a></li>
+            <li><a href="{% url 'plati:portal_client' %}" data-i18n="nav_portal">Portalul meu</a></li>
             {% if user.is_staff %}<li><a href="/admin/">Admin</a></li>{% endif %}
-            <li><a href="{% url 'logout' %}">Deconectare</a></li>
+            <li><a href="{% url 'logout' %}" data-i18n="nav_logout">Deconectare</a></li>
             {% else %}
-            <li><a href="{% url 'login' %}">Contul meu</a></li>
+            <li><a href="{% url 'login' %}" data-i18n="nav_login">Contul meu</a></li>
             {% endif %}
-            <li><a href="{% url 'contact:contact' %}" class="btn btn-primary">Contact</a></li>
+            <li class="lang-switcher-dj">
+                <button class="lang-btn-dj" data-lang="ro">RO</button>
+                <button class="lang-btn-dj" data-lang="en">EN</button>
+            </li>
+            <li><a href="{% url 'contact:contact' %}" class="btn btn-primary" data-i18n="nav_contact">Contact</a></li>
         </ul>
         <button class="navbar__burger" id="navBurger" aria-label="Meniu">
             <span></span><span></span><span></span>
@@ -28,21 +31,24 @@
     <!-- Mobile menu -->
     <div class="navbar__mobile" id="navMobile">
         <ul>
-            <li><a href="{% url 'servicii:ads' %}">Servicii Ads</a></li>
-            <li><a href="{% url 'servicii:web' %}">Web</a></li>
-            <li><a href="{% url 'servicii:pachete' %}">Pachete & Prețuri</a></li>
-            <li><a href="{% url 'plati:promo_trial' %}" style="color:var(--brand-primary,#00ff88); font-weight:700;">Trial 7 Zile — 50€</a></li>
-            <li><a href="{% url 'studii_de_caz:list' %}">Portofoliu</a></li>
-            <li><a href="{% url 'blog:list' %}">Blog</a></li>
-            <li><a href="{% url 'core:despre' %}">Despre</a></li>
+            <li><a href="{% url 'servicii:ads' %}" data-i18n="nav_ads">Servicii Ads</a></li>
+            <li><a href="{% url 'servicii:web' %}" data-i18n="nav_web">Web</a></li>
+            <li><a href="{% url 'servicii:pachete' %}" data-i18n="nav_pachete">Pachete & Prețuri</a></li>
+            <li><a href="{% url 'studii_de_caz:list' %}" data-i18n="nav_portfolio">Portofoliu</a></li>
+            <li><a href="{% url 'blog:list' %}" data-i18n="nav_blog">Blog</a></li>
+            <li><a href="{% url 'core:despre' %}" data-i18n="nav_about">Despre</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'plati:portal_client' %}">Portalul meu</a></li>
+            <li><a href="{% url 'plati:portal_client' %}" data-i18n="nav_portal">Portalul meu</a></li>
             {% if user.is_staff %}<li><a href="/admin/">Admin</a></li>{% endif %}
-            <li><a href="{% url 'logout' %}">Deconectare</a></li>
+            <li><a href="{% url 'logout' %}" data-i18n="nav_logout">Deconectare</a></li>
             {% else %}
-            <li><a href="{% url 'login' %}">Contul meu</a></li>
+            <li><a href="{% url 'login' %}" data-i18n="nav_login">Contul meu</a></li>
             {% endif %}
-            <li><a href="{% url 'contact:contact' %}">Contact</a></li>
+            <li><a href="{% url 'contact:contact' %}" data-i18n="nav_contact">Contact</a></li>
+            <li class="lang-switcher-dj" style="padding: 8px 0;">
+                <button class="lang-btn-dj" data-lang="ro">RO</button>
+                <button class="lang-btn-dj" data-lang="en">EN</button>
+            </li>
         </ul>
     </div>
 </nav>

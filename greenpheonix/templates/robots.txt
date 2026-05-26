@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /plati/callback/
-Disallow: /media/
-
-Sitemap: https://greenpheonixconcept.com/sitemap.xml

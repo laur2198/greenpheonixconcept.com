@@ -8,3 +8,4 @@ package.json
 package-lock.json
 process-images.mjs
 render-hero.mjs
+render-hero-clean.mjs

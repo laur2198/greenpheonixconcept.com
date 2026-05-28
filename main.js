@@ -85,8 +85,6 @@
             hero_poster_a_cta: "CLICK TO START",
             hero_poster_b_cta: "CLICK FOR DETAILS",
             hero_poster_c_cta: "CLICK TO SCALE",
-            hero_stat_1: "ROAS CURENT",
-            hero_stat_2: "CAMPANII ACTIVE",
             hero_system_online: "SISTEM ONLINE",
             hero_ticker: "/// STRATEGIE /// AUDIT /// IMPLEMENTARE /// SCALARE /// TRACKING /// CRO /// CREATIVE /// AUTOMATIZARE ///",
             hero_ver: "AGENȚIE_VER_2.5",

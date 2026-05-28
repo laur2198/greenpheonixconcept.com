@@ -1,0 +1,9 @@
+
+# Backup originals (kept locally, never committed)
+_originals/
+
+# Tooling for one-off image processing (not part of the static site)
+node_modules/
+package.json
+package-lock.json
+process-images.mjs

@@ -33,7 +33,7 @@
     <nav>
         <div class="logo">
             <a href="index.html">
-                <img src="logo_gpc.svg" alt="Green Pheonix" class="logo-img" />
+                <picture><source srcset="logo.avif" type="image/avif"><source srcset="logo.webp" type="image/webp"><img src="logo.png" alt="Green Pheonix" class="logo-img" width="44" height="44"></picture>
                 <span class="logo-text">GREEN PHEONIX</span>
             </a>
         </div>
@@ -73,7 +73,12 @@
 
         <!-- COLOANA IMAGINE -->
         <div class="about-image-side">
-            <img src="founder.png" alt="Laurențiu Bogdan" class="full-view-img">
+            <picture>
+                <source type="image/avif" srcset="founder-600.avif 600w, founder.avif 1200w" sizes="(max-width: 768px) 100vw, 50vw">
+                <source type="image/webp" srcset="founder-600.webp 600w, founder.webp 1200w" sizes="(max-width: 768px) 100vw, 50vw">
+                <img src="founder.jpg" srcset="founder-600.jpg 600w, founder.jpg 1200w" sizes="(max-width: 768px) 100vw, 50vw"
+                     alt="Laurențiu Bogdan" class="full-view-img" width="800" height="1200" loading="lazy" decoding="async">
+            </picture>
         </div>
 
         <!-- COLOANA TEXT -->
